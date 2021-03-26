@@ -8,8 +8,8 @@
 import Foundation
 
 public struct ImageRef {
-    let smallURL: String
-    let thumbURL: String
+    public let smallURL: String
+    public let thumbURL: String
     
     init(smallURL: String, thumbURL: String) {
         self.smallURL = smallURL

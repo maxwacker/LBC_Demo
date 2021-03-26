@@ -25,7 +25,7 @@ public struct ProductRecord {
         imageRef: ImageRef,
         creationDate: Date,
         isUrgent: Bool,
-        siret: String?) {
+        siret: String? = nil) {
         self.id = id
         self.category = category
         self.title = title

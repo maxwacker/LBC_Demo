@@ -7,6 +7,7 @@
 	objects = {
 
 /* Begin PBXBuildFile section */
+		50987E71260E27E100B457E5 /* BusinessEntities.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 50A8C915260CF3DD00676B54 /* BusinessEntities.framework */; };
 		50A8C897260CE51300676B54 /* Assets.xcassets in Resources */ = {isa = PBXBuildFile; fileRef = 50A8C896260CE51300676B54 /* Assets.xcassets */; };
 		50A8C8AA260CE52900676B54 /* AppLauncher.h in Headers */ = {isa = PBXBuildFile; fileRef = 50A8C8A8260CE52900676B54 /* AppLauncher.h */; settings = {ATTRIBUTES = (Public, ); }; };
 		50A8C8AD260CE52900676B54 /* AppLauncher.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 50A8C8A6260CE52900676B54 /* AppLauncher.framework */; };
@@ -46,6 +47,13 @@
 /* End PBXBuildFile section */
 
 /* Begin PBXContainerItemProxy section */
+		50987E6E260E27D500B457E5 /* PBXContainerItemProxy */ = {
+			isa = PBXContainerItemProxy;
+			containerPortal = 50A8C882260CE51000676B54 /* Project object */;
+			proxyType = 1;
+			remoteGlobalIDString = 50A8C914260CF3DD00676B54;
+			remoteInfo = BusinessEntities;
+		};
 		50A8C8AB260CE52900676B54 /* PBXContainerItemProxy */ = {
 			isa = PBXContainerItemProxy;
 			containerPortal = 50A8C882260CE51000676B54 /* Project object */;
@@ -217,6 +225,7 @@
 			isa = PBXFrameworksBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
+				50987E71260E27E100B457E5 /* BusinessEntities.framework in Frameworks */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
@@ -246,6 +255,13 @@
 /* End PBXFrameworksBuildPhase section */
 
 /* Begin PBXGroup section */
+		50987E70260E27E100B457E5 /* Frameworks */ = {
+			isa = PBXGroup;
+			children = (
+			);
+			name = Frameworks;
+			sourceTree = "<group>";
+		};
 		50A8C881260CE50F00676B54 = {
 			isa = PBXGroup;
 			children = (
@@ -253,6 +269,7 @@
 				50A8C90F260CF21600676B54 /* Commons */,
 				50A8C8F7260CEA5400676B54 /* AppScenes */,
 				50A8C88B260CE51000676B54 /* Products */,
+				50987E70260E27E100B457E5 /* Frameworks */,
 			);
 			sourceTree = "<group>";
 		};
@@ -393,6 +410,7 @@
 			isa = PBXGroup;
 			children = (
 				50A8C909260CF11E00676B54 /* Sources */,
+				50A8C934260D003100676B54 /* Tests */,
 				50A8C8FF260CF04D00676B54 /* ProductListScene.h */,
 				50A8C900260CF04D00676B54 /* Info.plist */,
 			);
@@ -428,6 +446,7 @@
 		50A8C90C260CF17500676B54 /* UC */ = {
 			isa = PBXGroup;
 			children = (
+				50A8C937260D042C00676B54 /* ProductListInteractor.swift */,
 			);
 			path = UC;
 			sourceTree = "<group>";
@@ -435,6 +454,7 @@
 		50A8C90D260CF17C00676B54 /* VM */ = {
 			isa = PBXGroup;
 			children = (
+				50A8C935260D027200676B54 /* ProductListPresenter.swift */,
 			);
 			path = VM;
 			sourceTree = "<group>";
@@ -459,10 +479,10 @@
 		50A8C916260CF3DD00676B54 /* BusinessEntities */ = {
 			isa = PBXGroup;
 			children = (
-				50A8C917260CF3DD00676B54 /* BusinessEntities.h */,
-				50A8C918260CF3DD00676B54 /* Info.plist */,
 				50A8C921260CF3FE00676B54 /* Sources */,
 				50A8C922260CF4A200676B54 /* Tests */,
+				50A8C917260CF3DD00676B54 /* BusinessEntities.h */,
+				50A8C918260CF3DD00676B54 /* Info.plist */,
 			);
 			path = BusinessEntities;
 			sourceTree = "<group>";
@@ -480,6 +500,7 @@
 		50A8C922260CF4A200676B54 /* Tests */ = {
 			isa = PBXGroup;
 			children = (
+				50A8C92B260CFB2B00676B54 /* ProductRecordTests.swift */,
 				50A8C92D260CFB2B00676B54 /* Info.plist */,
 				50A8C94A260DDACC00676B54 /* ImageRefTests.swift */,
 				50A8C92B260CFB2B00676B54 /* ProductRecordTests.swift */,
@@ -634,6 +655,7 @@
 			buildRules = (
 			);
 			dependencies = (
+				50987E6F260E27D500B457E5 /* PBXTargetDependency */,
 			);
 			name = ProductListScene;
 			productName = ProductListScene;
@@ -722,6 +744,7 @@
 					};
 					50A8C8FC260CF04D00676B54 = {
 						CreatedOnToolsVersion = 12.5;
+						LastSwiftMigration = 1250;
 					};
 					50A8C914260CF3DD00676B54 = {
 						CreatedOnToolsVersion = 12.5;
@@ -862,6 +885,8 @@
 			isa = PBXSourcesBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
+				50A8C938260D042C00676B54 /* ProductListInteractor.swift in Sources */,
+				50A8C936260D027200676B54 /* ProductListPresenter.swift in Sources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
@@ -896,6 +921,11 @@
 /* End PBXSourcesBuildPhase section */
 
 /* Begin PBXTargetDependency section */
+		50987E6F260E27D500B457E5 /* PBXTargetDependency */ = {
+			isa = PBXTargetDependency;
+			target = 50A8C914260CF3DD00676B54 /* BusinessEntities */;
+			targetProxy = 50987E6E260E27D500B457E5 /* PBXContainerItemProxy */;
+		};
 		50A8C8AC260CE52900676B54 /* PBXTargetDependency */ = {
 			isa = PBXTargetDependency;
 			target = 50A8C8A5260CE52900676B54 /* AppLauncher */;
@@ -1290,6 +1320,7 @@
 		50A8C907260CF04D00676B54 /* Debug */ = {
 			isa = XCBuildConfiguration;
 			buildSettings = {
+				CLANG_ENABLE_MODULES = YES;
 				CODE_SIGN_STYLE = Automatic;
 				CURRENT_PROJECT_VERSION = 1;
 				DEFINES_MODULE = YES;
@@ -1308,6 +1339,7 @@
 				PRODUCT_BUNDLE_IDENTIFIER = com.wacker.ProductListScene;
 				PRODUCT_NAME = "$(TARGET_NAME:c99extidentifier)";
 				SKIP_INSTALL = YES;
+				SWIFT_OPTIMIZATION_LEVEL = "-Onone";
 				SWIFT_VERSION = 5.0;
 				TARGETED_DEVICE_FAMILY = "1,2";
 				VERSIONING_SYSTEM = "apple-generic";
@@ -1318,6 +1350,7 @@
 		50A8C908260CF04D00676B54 /* Release */ = {
 			isa = XCBuildConfiguration;
 			buildSettings = {
+				CLANG_ENABLE_MODULES = YES;
 				CODE_SIGN_STYLE = Automatic;
 				CURRENT_PROJECT_VERSION = 1;
 				DEFINES_MODULE = YES;
