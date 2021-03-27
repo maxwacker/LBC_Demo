@@ -5,15 +5,26 @@
 //  Created by maxime wacker on 25/03/2021.
 //
 
-import Foundation
+import GenRouting
 
 import BusinessEntities
 
-protocol ProductListPresentering {
+// Router
+public enum ProductListRouteDestination {
+    case productDetail(productID: UInt)
+}
+
+public protocol ProductListRoutering: GenRouting {
+    func route(to destination: ProductListRouteDestination)
+}
+
+// Presenter
+public protocol ProductListPresentering {
     func update(from: [ProductRecord])
 }
 
-protocol ProductListNetWorking {
+// Worker
+public protocol ProductListNetWorking {
     func load(handler: @escaping (Result<[ProductRecord], Error>) -> Void)
 }
 

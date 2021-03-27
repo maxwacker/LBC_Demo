@@ -11,9 +11,10 @@ import GenRouting
 
 import AppLauncher
 import RootNavScene
+import ProductListScene
 
 let rootSceneFactory = RootNavSceneFactory()
-//let productListFactory = ProductListFactory()
-//rootSceneFactory.router.routetStack.push(productListFactory.router)
+let productListSceneFactory = ProductListSceneFactory()
+rootSceneFactory.router.push(productListSceneFactory.router)
 
 AppLauncher.launchApp(rootRouter: rootSceneFactory.router as GenRouting)

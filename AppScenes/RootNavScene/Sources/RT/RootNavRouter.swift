@@ -9,15 +9,6 @@ import UIKit
 
 import GenRouting
 
-public class DemoVC : UIViewController {
-    public override func viewDidLoad() {
-        let label = UILabel()
-        label.text = "Demo"
-        label.backgroundColor = .purple
-        self.view = label
-    }
-}
-
 public final class NavigationRouter {
     private let _navigator: Navigating? = nil
     public /*weak*/ var _viewController: RootNavigatoring?
@@ -51,10 +42,14 @@ extension NavigationRouter: GenRouting {
     }
         
     public func start() {
-      //parentRouter?.navigator?.push(vc: viewController)
-        navigator?.push(vc: DemoVC())
     }
 }
 
-extension NavigationRouter: RootNavRouting {}
+extension NavigationRouter: RootNavRouting {
+    public func push(_ router: GenRouting) {
+        //router.parentRouter = self
+        _routerStack.append(router)
+        navigator?.push(vc: router.viewController)
+    }
+}
 

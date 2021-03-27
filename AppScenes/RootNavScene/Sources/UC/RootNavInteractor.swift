@@ -7,7 +7,9 @@
 
 import GenRouting
 
-public protocol RootNavRouting: GenRouting {}
+public protocol RootNavRouting: GenRouting {
+    func push(_ router: GenRouting)
+}
 
 public class RootNavInteractor: RootNavInteractoring {}
 

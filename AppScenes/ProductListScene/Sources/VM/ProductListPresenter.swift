@@ -7,7 +7,7 @@
 
 import BusinessEntities
 
-struct ProductListItemViewModel {
+public struct ProductListItemViewModel {
     let imageID: String?
     let title: String
     let price: String
@@ -25,9 +25,9 @@ struct ProductListItemViewModel {
 }
 
 
-typealias ProductListViewModel = [ProductListItemViewModel]
+public typealias ProductListViewModel = [ProductListItemViewModel]
 
-protocol ProductListViewControllering: AnyObject {
+public protocol ProductListViewControllering: AnyObject {
     func viewModelUpdated(_ new: ProductListViewModel)
 }
 
@@ -41,7 +41,7 @@ extension ProductCategory {
 
 
 final class ProductListPresenter: ProductListPresentering {
-    weak var viewController: ProductListViewControllering?
+    weak var _viewController: ProductListViewControllering?
     func update(from: [ProductRecord]) {
         let newVM:ProductListViewModel = from.map {
             (productRecord: ProductRecord) -> ProductListItemViewModel in
@@ -52,7 +52,7 @@ final class ProductListPresenter: ProductListPresentering {
                 isUrgent: productRecord.isUrgent,
                 category: productRecord.category.displayName())
         }
-        viewController?.viewModelUpdated(newVM)
+        _viewController?.viewModelUpdated(newVM)
     }
     
     
