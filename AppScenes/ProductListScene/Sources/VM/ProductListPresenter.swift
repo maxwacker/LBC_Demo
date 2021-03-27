@@ -8,13 +8,13 @@
 import BusinessEntities
 
 struct ProductListItemViewModel {
-    let imageID: String
+    let imageID: String?
     let title: String
     let price: String
     let isUrgent: Bool
     let category: String
     
-    internal init(imageID: String, title: String, price: String, isUrgent: Bool, category: String) {
+    internal init(imageID: String?, title: String, price: String, isUrgent: Bool, category: String) {
         self.imageID = imageID
         self.title = title
         self.price = price

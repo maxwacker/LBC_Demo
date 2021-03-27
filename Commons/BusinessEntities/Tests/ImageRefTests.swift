@@ -26,5 +26,17 @@ class ImageRefTests: XCTestCase {
             XCTFail(error.localizedDescription)
         }
     }
+    
+    func test_GIVEN_JsonImageURLEmptyDefinition_WHEN_Decoding_THEN_ImageRefWithNilProperties() {
+        let jsonImageRefData = Data("{}".utf8)
+        let decoder = JSONDecoder()
+        do {
+            let testedImageRef: ImageRef = try decoder.decode(ImageRef.self, from: jsonImageRefData)
+            XCTAssertNil(testedImageRef.smallURL)
+            XCTAssertNil(testedImageRef.thumbURL)
+        } catch {
+            XCTFail(error.localizedDescription)
+        }
+    }
 
 }
