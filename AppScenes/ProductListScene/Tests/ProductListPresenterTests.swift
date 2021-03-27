@@ -1,6 +1,6 @@
 //
-//  ProductListSceneTests.swift
-//  ProductListSceneTests
+//  ProductListPresenterTests.swift
+//  ProductListPresenterTests
 //
 //  Created by maxime wacker on 26/03/2021.
 //
@@ -18,7 +18,7 @@ class FakeProductListViewController: ProductListViewControllering {
     
 }
 
-class ProductListSceneTests: XCTestCase {
+class ProductListPresenterTests: XCTestCase {
 
     func test_GIVEN_aProductRecord_WHEN_PresenterIsUpdatedWithIt_THEN_ViewControllerShouldReveiveRightViewModel() throws {
         //GIVEN
