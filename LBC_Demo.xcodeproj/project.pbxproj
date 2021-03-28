@@ -13,6 +13,7 @@
 		50623A4C260F3476002E4D11 /* ProductListInteractorTests.swift in Sources */ = {isa = PBXBuildFile; fileRef = 50623A43260F2D11002E4D11 /* ProductListInteractorTests.swift */; };
 		50623A6E260F7F92002E4D11 /* ProductListRouter.swift in Sources */ = {isa = PBXBuildFile; fileRef = 50623A6D260F7F92002E4D11 /* ProductListRouter.swift */; };
 		50623A8D260F845C002E4D11 /* ProductListScene.swift in Sources */ = {isa = PBXBuildFile; fileRef = 50623A8C260F845C002E4D11 /* ProductListScene.swift */; };
+		50623AAB2610BC15002E4D11 /* ProductListCell.swift in Sources */ = {isa = PBXBuildFile; fileRef = 50623AAA2610BC15002E4D11 /* ProductListCell.swift */; };
 		50987E71260E27E100B457E5 /* BusinessEntities.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 50A8C915260CF3DD00676B54 /* BusinessEntities.framework */; };
 		50A8C897260CE51300676B54 /* Assets.xcassets in Resources */ = {isa = PBXBuildFile; fileRef = 50A8C896260CE51300676B54 /* Assets.xcassets */; };
 		50A8C8AA260CE52900676B54 /* AppLauncher.h in Headers */ = {isa = PBXBuildFile; fileRef = 50A8C8A8260CE52900676B54 /* AppLauncher.h */; settings = {ATTRIBUTES = (Public, ); }; };
@@ -157,6 +158,7 @@
 		50623A43260F2D11002E4D11 /* ProductListInteractorTests.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ProductListInteractorTests.swift; sourceTree = "<group>"; };
 		50623A6D260F7F92002E4D11 /* ProductListRouter.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ProductListRouter.swift; sourceTree = "<group>"; };
 		50623A8C260F845C002E4D11 /* ProductListScene.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ProductListScene.swift; sourceTree = "<group>"; };
+		50623AAA2610BC15002E4D11 /* ProductListCell.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ProductListCell.swift; sourceTree = "<group>"; };
 		50A8C88A260CE51000676B54 /* LBC_Demo.app */ = {isa = PBXFileReference; explicitFileType = wrapper.application; includeInIndex = 0; path = LBC_Demo.app; sourceTree = BUILT_PRODUCTS_DIR; };
 		50A8C896260CE51300676B54 /* Assets.xcassets */ = {isa = PBXFileReference; lastKnownFileType = folder.assetcatalog; path = Assets.xcassets; sourceTree = "<group>"; };
 		50A8C89B260CE51300676B54 /* Info.plist */ = {isa = PBXFileReference; lastKnownFileType = text.plist.xml; path = Info.plist; sourceTree = "<group>"; };
@@ -462,6 +464,7 @@
 			isa = PBXGroup;
 			children = (
 				50623A0E260F10D0002E4D11 /* ProductListViewController.swift */,
+				50623AAA2610BC15002E4D11 /* ProductListCell.swift */,
 			);
 			path = UI;
 			sourceTree = "<group>";
@@ -912,6 +915,7 @@
 			files = (
 				50A8C938260D042C00676B54 /* ProductListInteractor.swift in Sources */,
 				50623A06260F0CD7002E4D11 /* ProductListNetWorker.swift in Sources */,
+				50623AAB2610BC15002E4D11 /* ProductListCell.swift in Sources */,
 				50623A0F260F10D0002E4D11 /* ProductListViewController.swift in Sources */,
 				50A8C936260D027200676B54 /* ProductListPresenter.swift in Sources */,
 				50623A8D260F845C002E4D11 /* ProductListScene.swift in Sources */,

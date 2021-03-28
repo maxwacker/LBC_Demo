@@ -16,7 +16,9 @@ final class ProductListViewController: UITableViewController {
 
     private var _viewModel: ProductListViewModel?
     
+    
     public init(interactor:ProductListInteractoring) {
+     
         self._interactor = interactor
         super.init(nibName: nil, bundle: nil)
     }
@@ -27,27 +29,33 @@ final class ProductListViewController: UITableViewController {
     
     public override func viewDidLoad() {
         super.viewDidLoad()
+        
+        
+        tableView.rowHeight = 100.0
+        tableView.register(
+            ProductListCell.self,
+            forCellReuseIdentifier: String(describing: type(of: ProductListCell.self)))
+
         _interactor.loadProducts()
     }
     
     // MARK: - Table view data source
     public override func numberOfSections(in tableView: UITableView) -> Int {
-      return 1
+        return 1
     }
     
     public override func tableView(_ tableView: UITableView, numberOfRowsInSection section: Int) -> Int {
-      return _viewModel?.count ?? 0
+        return _viewModel?.count ?? 0
     }
     
     public override func tableView(_ tableView: UITableView, cellForRowAt indexPath: IndexPath) -> UITableViewCell {
-      let cell = tableView.dequeueReusableCell(withIdentifier: "ProductListCell") ?? UITableViewCell(style: .value1, reuseIdentifier: "ProductListCell")
-      
-      let row = indexPath.row
-      cell.textLabel?.text = _viewModel?[row].title
-      //cell.textLabel?.numberOfLines = 0
-      cell.detailTextLabel?.text = _viewModel?[row].price
-      return cell
+        let cell: ProductListCell = tableView.dequeueReusableCell(withIdentifier: String(describing: type(of: ProductListCell.self)), for: indexPath) as! ProductListCell
+        
+        let row = indexPath.row
+        cell.productItem =  _viewModel?[row]
+        return cell
     }
+    
 }
 
 
