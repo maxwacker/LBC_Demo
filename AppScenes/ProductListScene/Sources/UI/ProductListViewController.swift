@@ -7,18 +7,35 @@
 
 import UIKit
 
+protocol ProductListCelling: AnyObject {
+//    func updateImage(data: Data)
+    func updateMain(_ mainViewModel: ProductCellMainViewModel)
+}
+
+
+protocol ProductListCellFactoring {
+    func makeProductListCell(
+        at indexPath: IndexPath,
+        in tableView: UITableView
+    ) -> ProductListCelling?
+}
+
 public protocol ProductListInteractoring {
-    func loadProducts()
+    var productsCount: Int {get}
+    //func productID(at row: Int) -> UInt?
+    //func dataStoreUpdated()
 }
 
 final class ProductListViewController: UITableViewController {
+    private let _cellFactory: ProductListCellFactoring
     private let _interactor: ProductListInteractoring
 
-    private var _viewModel: ProductListViewModel?
-    
-    
-    public init(interactor:ProductListInteractoring) {
-     
+
+    public init(
+        interactor: ProductListInteractoring,
+        cellFactory: ProductListCellFactoring
+    ) {
+        self._cellFactory = cellFactory
         self._interactor = interactor
         super.init(nibName: nil, bundle: nil)
     }
@@ -35,8 +52,6 @@ final class ProductListViewController: UITableViewController {
         tableView.register(
             ProductListCell.self,
             forCellReuseIdentifier: String(describing: type(of: ProductListCell.self)))
-
-        _interactor.loadProducts()
     }
     
     // MARK: - Table view data source
@@ -45,23 +60,18 @@ final class ProductListViewController: UITableViewController {
     }
     
     public override func tableView(_ tableView: UITableView, numberOfRowsInSection section: Int) -> Int {
-        return _viewModel?.count ?? 0
+        return _interactor.productsCount
     }
     
     public override func tableView(_ tableView: UITableView, cellForRowAt indexPath: IndexPath) -> UITableViewCell {
-        let cell: ProductListCell = tableView.dequeueReusableCell(withIdentifier: String(describing: type(of: ProductListCell.self)), for: indexPath) as! ProductListCell
-        
-        let row = indexPath.row
-        cell.productItem =  _viewModel?[row]
-        return cell
+        return (_cellFactory.makeProductListCell(at: indexPath, in: tableView) as? UITableViewCell) ?? UITableViewCell()
     }
     
 }
 
 
 extension ProductListViewController: ProductListViewControllering {
-    func viewModelUpdated(_ new: ProductListViewModel) {
-        self._viewModel = new
+    func reloadTable() {
         DispatchQueue.main.async {
             self.tableView.reloadData()
         }

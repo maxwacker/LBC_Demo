@@ -20,38 +20,43 @@ public protocol ProductListRoutering: GenRouting {
 
 // Presenter
 public protocol ProductListPresentering {
-    func update(from: [ProductRecord])
+    func updateList()
 }
 
-// Worker
-public protocol ProductListNetWorking {
-    func load(handler: @escaping (Result<[ProductRecord], Error>) -> Void)
+
+// Data Store
+public protocol ProductDataStoring: AnyObject {
+    func loadProducts(done: @escaping ()->Void)
+    var productsCount: Int {get}
+    func productID(at rank: Int) -> UInt?
+    func product(id: UInt) -> ProductRecord?
+
 }
+
 
 final class ProductListInteractor: ProductListInteractoring {
+
+    
+
+    var productsCount: Int {_dataStore.productsCount}
+    
+    func productID(at row: Int) -> UInt? {
+        _dataStore.productID(at: row)
+    }
+    
     let _presenter: ProductListPresentering
-    let _netWorker: ProductListNetWorking
+    let _dataStore: ProductDataStoring
+    
     
     public init(
         presenter: ProductListPresentering,
-        netWorker: ProductListNetWorking
+        dataStore: ProductDataStoring
     ) {
         self._presenter = presenter
-        self._netWorker = netWorker
-    }
-    
-    func loadProducts() {
-        _netWorker.load() { [ weak self]
-            ( result: Result<[ProductRecord], Error>) in
-            switch result {
-            case .success( let products):
-                self?._presenter.update(from: products)
-                break
-            case .failure(let error):
-                // FIXME : Handle Error properly
-                print(error)
-                break
-            }
+        self._dataStore = dataStore
+        _dataStore.loadProducts { [weak self] in
+            self?._presenter.updateList()
         }
     }
+    
 }

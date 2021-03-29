@@ -5,8 +5,10 @@
 //  Created by maxime wacker on 23/03/2021.
 //
 
+public typealias ProductID = UInt
+
 public struct ProductRecord {
-    public let id: UInt
+    public let id: ProductID
     public let category: ProductCategory
     public let title: String
     public let description: String
@@ -17,7 +19,7 @@ public struct ProductRecord {
     public let siret: String?
  
     init(
-        id: UInt,
+        id: ProductID,
         category: ProductCategory,
         title: String,
         description: String,
@@ -53,7 +55,7 @@ extension ProductRecord: Decodable {
     
     public init(from decoder: Decoder) throws {
         let container = try decoder.container(keyedBy: CodingKeys.self)
-        self.id = try container.decode(UInt.self, forKey: .id)
+        self.id = try container.decode(ProductID.self, forKey: .id)
         self.category = try container.decode(ProductCategory.self, forKey: .category_id)
         self.title = try container.decode(String.self, forKey: .title)
         self.description = try container.decode(String.self, forKey: .description)

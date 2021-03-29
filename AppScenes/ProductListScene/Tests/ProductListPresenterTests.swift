@@ -44,7 +44,7 @@ class ProductListPresenterTests: XCTestCase {
         testedProductListPresenter.update(from: [productRecord])
         
         //THEN
-        let expectedItemViewModel = ProductListItemViewModel(
+        let expectedItemViewModel = ProductListItemMainViewModel(
             imageID: "https://host.org/thumb/t.jpg",
             title: "Some Title",
             price: "12.55 €",

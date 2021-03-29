@@ -38,7 +38,7 @@ extension UIImage {
 
 
 final class ProductListCell: UITableViewCell {
-    
+        
     required init?(coder: NSCoder) {
         fatalError("init(coder:) has not been implemented")
     }
@@ -79,7 +79,7 @@ final class ProductListCell: UITableViewCell {
 
     }
     
-    var productItem: ProductListItemViewModel? {
+    var productItem: ProductCellMainViewModel? {
         didSet {
             //productImage.image = product?.productImage
             titleLabel.text = productItem?.title
@@ -118,7 +118,12 @@ final class ProductListCell: UITableViewCell {
         imgView.clipsToBounds = true
         return imgView
     }()
- 
- 
+}
+
+extension ProductListCell: ProductListCelling{
+    func updateMain(_ mainViewModel: ProductCellMainViewModel) {
+        productItem = mainViewModel
+    }
+    
     
 }

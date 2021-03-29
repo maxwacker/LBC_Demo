@@ -1,5 +1,5 @@
 //
-//  ProductListNetWorker.swift
+//  AllProductListNetWorker.swift
 //  LBC_Demo
 //
 //  Created by maxime wacker on 27/03/2021.
@@ -25,7 +25,7 @@ extension URLSession {
     }
 }
 
-final class ProductListNetWorker: ProductListNetWorking {
+final class AllProductNetWorker: AllProductNetWorking {
     private let _serviceURL: URL
     private let session = URLSession(configuration: .default)
 

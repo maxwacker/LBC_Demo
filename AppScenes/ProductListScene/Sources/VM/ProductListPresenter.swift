@@ -7,15 +7,18 @@
 
 import BusinessEntities
 
-public struct ProductListItemViewModel {
-    let imageID: String?
+typealias ProductID = UInt
+
+public struct ProductCellMainViewModel {
+    let productID: UInt
+    //let imageID: String?
     let title: String
     let price: String
     let isUrgent: Bool
     let category: String
     
-    internal init(imageID: String?, title: String, price: String, isUrgent: Bool, category: String) {
-        self.imageID = imageID
+    internal init(productID: UInt, title: String, price: String, isUrgent: Bool, category: String) {
+        self.productID = productID
         self.title = title
         self.price = price
         self.isUrgent = isUrgent
@@ -24,11 +27,8 @@ public struct ProductListItemViewModel {
     
 }
 
-
-public typealias ProductListViewModel = [ProductListItemViewModel]
-
 public protocol ProductListViewControllering: AnyObject {
-    func viewModelUpdated(_ new: ProductListViewModel)
+    func reloadTable()
 }
 
 extension ProductCategory {
@@ -39,21 +39,15 @@ extension ProductCategory {
     }
 }
 
-
 final class ProductListPresenter: ProductListPresentering {
-    weak var _viewController: ProductListViewControllering?
-    func update(from: [ProductRecord]) {
-        let newVM:ProductListViewModel = from.map {
-            (productRecord: ProductRecord) -> ProductListItemViewModel in
-            ProductListItemViewModel(
-                imageID: productRecord.imageRef.thumbURL,
-                title: productRecord.title,
-                price: "\(productRecord.price) €",
-                isUrgent: productRecord.isUrgent,
-                category: productRecord.category.displayName())
-        }
-        _viewController?.viewModelUpdated(newVM)
+    func updateList() {
+        _viewController?.reloadTable()
     }
     
+
+    
+    weak var _viewController: ProductListViewControllering?    
     
 }
+
+
