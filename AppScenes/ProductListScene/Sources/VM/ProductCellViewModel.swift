@@ -52,7 +52,9 @@ final class ProductCellPresenter: ProductListCellPresentering {
     
     func updateImage() {
         _imageDataStore?.getImageData(for: thumbImageURL!) {[weak self]
-            data in self?.cell?.updateImage(data: data! as Data) //FIX Forced cast
+            data in
+            guard let data = data as Data? else {return}
+            self?.cell?.updateImage(data: data)
         }
     }
 

@@ -53,8 +53,9 @@ final class ProductListCell: UITableViewCell {
         topHStack.topAnchor.constraint(equalTo: contentView.topAnchor).isActive = true
         topHStack.bottomAnchor.constraint(equalTo: contentView.bottomAnchor).isActive = true
         
-        self.showImageLoading()
-        
+        DispatchQueue.main.async  {
+            self.showImageLoading()
+        }
     }
     
     func showImageLoading(style: UIActivityIndicatorView.Style = .gray){
@@ -106,12 +107,15 @@ final class ProductListCell: UITableViewCell {
         titleLabel.text = nil
         priceLabel.text = nil
         productImageView.image = nil
+        DispatchQueue.main.async  {
+            self.showImageLoading()
+        }
     }
 }
 
 extension ProductListCell: ProductListCelling{
     func updateImage(data: Data) {
-        let image = UIImage(data: data) ?? UIImage(named: "image_download_placeholder")!
+        let image = UIImage(data: data) ?? UIImage(named: "no_image_found")!
         DispatchQueue.main.async  {
             self.stopLoading()
             self.productImageView.image = image
