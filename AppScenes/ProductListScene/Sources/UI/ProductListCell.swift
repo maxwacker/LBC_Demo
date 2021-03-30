@@ -38,14 +38,29 @@ extension UIImage {
 
 
 final class ProductListCell: UITableViewCell {
+    private var productImageView = UIImageView()
+ 
+//    private var productSmallImage: UIImage = UIImage(named: "image_download_placeholder")! {
+//        didSet {
+//            productImageView.image = productSmallImage
+//            self.layoutSubviews()
+//        }
+//    }
         
     required init?(coder: NSCoder) {
         fatalError("init(coder:) has not been implemented")
     }
     
     override init(style: UITableViewCell.CellStyle, reuseIdentifier: String?) {
-    super.init(style: style, reuseIdentifier: reuseIdentifier)
-                
+        super.init(style: style, reuseIdentifier: reuseIdentifier)
+        
+        productImageView.contentMode = .scaleAspectFit
+        productImageView.clipsToBounds = true
+        let tmpImage = UIImage(named: "image_download_placeholder")!.scalePreservingAspectRatio(
+            targetSize: CGSize(width: 96, height: 96)
+        )
+        productImageView.image = tmpImage
+        
         let textVStack = UIStackView(
             arrangedSubviews: [titleLabel, priceLabel])
         textVStack.backgroundColor = .darkGray
@@ -55,10 +70,10 @@ final class ProductListCell: UITableViewCell {
         textVStack.spacing = UIStackView.spacingUseSystem
         textVStack.isLayoutMarginsRelativeArrangement = true
         textVStack.directionalLayoutMargins = NSDirectionalEdgeInsets(top: 5, leading: 5, bottom: 5, trailing: 5)
-
         
         
-        let topHStack = UIStackView(arrangedSubviews: [productImage, textVStack])
+        
+        let topHStack = UIStackView(arrangedSubviews: [productImageView, textVStack])
         topHStack.backgroundColor = .blue
         topHStack.translatesAutoresizingMaskIntoConstraints = false
         topHStack.axis = .horizontal
@@ -70,13 +85,13 @@ final class ProductListCell: UITableViewCell {
         contentView.backgroundColor = .red
         
         contentView.addSubview(topHStack)
-   
+        
         topHStack.leadingAnchor.constraint(equalTo: contentView.leadingAnchor).isActive = true
         topHStack.trailingAnchor.constraint(equalTo: contentView.trailingAnchor).isActive = true
         topHStack.topAnchor.constraint(equalTo: contentView.topAnchor).isActive = true
         topHStack.bottomAnchor.constraint(equalTo: contentView.bottomAnchor).isActive = true
-   
-
+        
+        
     }
     
     var productItem: ProductCellMainViewModel? {
@@ -107,20 +122,24 @@ final class ProductListCell: UITableViewCell {
         return lbl
     }()
     
-    private let productImage : UIImageView = {
-        let image = UIImage(named: "image_download_placeholder")
-        let scaledImage = image?.scalePreservingAspectRatio(
-            targetSize: CGSize(width: 96, height: 96)
-        )
-        let imgView = UIImageView(image: scaledImage)
-        
-        imgView.contentMode = .scaleAspectFit
-        imgView.clipsToBounds = true
-        return imgView
-    }()
+    override func prepareForReuse() {
+        super.prepareForReuse()
+        titleLabel.text = nil
+        priceLabel.text = nil
+        productImageView.image = nil
+    }
 }
 
 extension ProductListCell: ProductListCelling{
+    func updateImage(data: Data) {
+        let image = UIImage(data: data) ?? UIImage(named: "image_download_placeholder")!
+        let scaledImage = image.scalePreservingAspectRatio(
+            targetSize: CGSize(width: 96, height: 96)
+        )
+        self.productImageView.image = scaledImage
+        self.layoutSubviews()
+    }
+    
     func updateMain(_ mainViewModel: ProductCellMainViewModel) {
         productItem = mainViewModel
     }

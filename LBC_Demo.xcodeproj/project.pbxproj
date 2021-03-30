@@ -24,6 +24,7 @@
 		50623B4D26131333002E4D11 /* BusinessEntities.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 50A8C915260CF3DD00676B54 /* BusinessEntities.framework */; };
 		50623B5E26131359002E4D11 /* ProductDataStore.swift in Sources */ = {isa = PBXBuildFile; fileRef = 50623ACD2611F2B5002E4D11 /* ProductDataStore.swift */; };
 		50623B7C261315E6002E4D11 /* DataRepositoryFactory.swift in Sources */ = {isa = PBXBuildFile; fileRef = 50623B7B261315E6002E4D11 /* DataRepositoryFactory.swift */; };
+		50623BA126131B0A002E4D11 /* ImageNetWorker.swift in Sources */ = {isa = PBXBuildFile; fileRef = 50623BA026131B0A002E4D11 /* ImageNetWorker.swift */; };
 		50987E71260E27E100B457E5 /* BusinessEntities.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 50A8C915260CF3DD00676B54 /* BusinessEntities.framework */; };
 		50A8C897260CE51300676B54 /* Assets.xcassets in Resources */ = {isa = PBXBuildFile; fileRef = 50A8C896260CE51300676B54 /* Assets.xcassets */; };
 		50A8C8AA260CE52900676B54 /* AppLauncher.h in Headers */ = {isa = PBXBuildFile; fileRef = 50A8C8A8260CE52900676B54 /* AppLauncher.h */; settings = {ATTRIBUTES = (Public, ); }; };
@@ -200,6 +201,7 @@
 		50623AFB26121787002E4D11 /* ProductCellViewModel.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ProductCellViewModel.swift; sourceTree = "<group>"; };
 		50623B0F261308CD002E4D11 /* ImageDataStore.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ImageDataStore.swift; sourceTree = "<group>"; };
 		50623B7B261315E6002E4D11 /* DataRepositoryFactory.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = DataRepositoryFactory.swift; sourceTree = "<group>"; };
+		50623BA026131B0A002E4D11 /* ImageNetWorker.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ImageNetWorker.swift; sourceTree = "<group>"; };
 		50A8C88A260CE51000676B54 /* LBC_Demo.app */ = {isa = PBXFileReference; explicitFileType = wrapper.application; includeInIndex = 0; path = LBC_Demo.app; sourceTree = BUILT_PRODUCTS_DIR; };
 		50A8C896260CE51300676B54 /* Assets.xcassets */ = {isa = PBXFileReference; lastKnownFileType = folder.assetcatalog; path = Assets.xcassets; sourceTree = "<group>"; };
 		50A8C89B260CE51300676B54 /* Info.plist */ = {isa = PBXFileReference; lastKnownFileType = text.plist.xml; path = Info.plist; sourceTree = "<group>"; };
@@ -360,6 +362,7 @@
 				50623B0F261308CD002E4D11 /* ImageDataStore.swift */,
 				50623ACD2611F2B5002E4D11 /* ProductDataStore.swift */,
 				50623A04260F0CD7002E4D11 /* AllProductListNetWorker.swift */,
+				50623BA026131B0A002E4D11 /* ImageNetWorker.swift */,
 			);
 			path = WK;
 			sourceTree = "<group>";
@@ -1011,6 +1014,7 @@
 				50623B21261308DA002E4D11 /* ImageDataStore.swift in Sources */,
 				50623B5E26131359002E4D11 /* ProductDataStore.swift in Sources */,
 				50623B322613120C002E4D11 /* AllProductListNetWorker.swift in Sources */,
+				50623BA126131B0A002E4D11 /* ImageNetWorker.swift in Sources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};

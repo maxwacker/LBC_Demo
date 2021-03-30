@@ -24,35 +24,25 @@ public protocol ProductListPresentering {
 }
 
 
-// Data Store
-public protocol ProductDataStoring: AnyObject {
-    func loadProducts(done: @escaping ()->Void)
-    var productsCount: Int {get}
-    func productID(at rank: Int) -> UInt?
-    func product(id: UInt) -> ProductRecord?
-
-}
-
-
 final class ProductListInteractor: ProductListInteractoring {
 
-    var productsCount: Int {_dataStore.productsCount}
+    var productsCount: Int {_productDataStore.productsCount}
     
     func productID(at row: Int) -> UInt? {
-        _dataStore.productID(at: row)
+        _productDataStore.productID(at: row)
     }
     
     let _presenter: ProductListPresentering
-    let _dataStore: ProductDataStoring
+    let _productDataStore: ProductDataStoring
     
     
     public init(
         presenter: ProductListPresentering,
-        dataStore: ProductDataStoring
+        productDataStore: ProductDataStoring
     ) {
         self._presenter = presenter
-        self._dataStore = dataStore
-        _dataStore.loadProducts { [weak self] in
+        self._productDataStore = productDataStore
+        _productDataStore.loadProducts { [weak self] in
             self?._presenter.updateList()
         }
     }

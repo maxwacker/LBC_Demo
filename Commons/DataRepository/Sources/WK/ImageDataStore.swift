@@ -6,46 +6,50 @@
 //
 
 import Foundation
+import ProductListScene
 
-final class ImageDataStore {
-    private let cachedImageData = NSCache<NSURL, NSData>()
-    private var loadingResponses = [NSURL: [(NSData?) -> Swift.Void]]()
+protocol ImageLoading {
+    func load(url: NSURL,handler: @escaping (Result<NSData, Error>) -> Void)
+}
 
+final class ImageDataStore: ImageDataStoring {
+    private let _imageLoader: ImageLoading
+    private let _imageDataCache = NSCache<NSURL, NSData>()
+    private var _loadingResponses = [NSURL: [(NSData?) -> Void]]()
+
+    init(imageLoader: ImageLoading = ImageLoader()){
+        self._imageLoader = imageLoader
+    }
     
-    final func load(url: NSURL, completion: @escaping (NSData?) -> Swift.Void) {
+    final func getImageData(for url: NSURL, completion: @escaping (NSData?) -> Void) {
         // Check for a cached image.
-        if let cachedImageData = cachedImageData.object(forKey: url) {
-                completion(cachedImageData)
-            }
+        if let cachedImageData = _imageDataCache.object(forKey: url) {
+            completion(cachedImageData)
             return
+        }
         // In case there are more than one requestor for the image, we append their completion block.
-        if loadingResponses[url] != nil {
-            loadingResponses[url]?.append(completion)
+        if _loadingResponses[url] != nil {
+            _loadingResponses[url]?.append(completion)
             return
         } else {
-            loadingResponses[url] = [completion]
+            _loadingResponses[url] = [completion]
         }
         // Go fetch the image.
-/*
-        ImageURLProtocol.urlSession().dataTask(with: url as URL) { (data, response, error) in
-            // Check for the error, then data and try to create the image.
-            guard let responseData = data,
-                let blocks = self.loadingResponses[url], error == nil else {
-                DispatchQueue.main.async {
-                    completion(nil)
+        _imageLoader.load(url: url) { [weak self]
+            (result: Result<NSData, Error>) in
+            switch result {
+            case .success (let responseData):
+                self?._imageDataCache.setObject(responseData, forKey: url, cost: responseData.count)
+                // Iterate over each requestor for the image and pass it back.
+                for completion in self?._loadingResponses[url] ?? [] {
+                    completion(responseData)
                 }
-                return
+            case .failure(let error):
+                // FIXME : Handle Error properly
+                print(error)
+                completion(nil)
+                break
             }
-            // Cache the image.
-            self.cachedImages.setObject(responseData, forKey: url, cost: responseData.count)
-            // Iterate over each requestor for the image and pass it back.
-            for block in blocks {
-                DispatchQueue.main.async {
-                    block(image)
-                }
-                return
-            }
-        }.resume()
- */
+        }
     }
 }

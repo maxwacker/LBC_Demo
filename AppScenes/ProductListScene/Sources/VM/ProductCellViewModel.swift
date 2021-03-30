@@ -9,29 +9,52 @@ import BusinessEntities
 
 final class ProductCellPresenter: ProductListCellPresentering {
     
+    static var priceformatter: NumberFormatter {
+        let formatter = NumberFormatter()
+        formatter.numberStyle = .currency
+        formatter.currencyCode = "EUR"
+        formatter.maximumFractionDigits = 2
+        return formatter
+    }
+
+        
     var cell: ProductListCelling?
     private var _productID: UInt
-    weak var _dataStore: ProductDataStoring?
+    weak var _productDataStore: ProductDataStoring?
+    weak var _imageDataStore: ImageDataStoring?
+    private var thumbImageURL: NSURL?
+    
     
     init(
         cell: ProductListCelling,
-        dataStore: ProductDataStoring,
+        productDataStore: ProductDataStoring,
+        imageDataStore: ImageDataStoring,
         productID: UInt) {
         self.cell = cell
-        self._dataStore = dataStore
+        self._productDataStore = productDataStore
+        self._imageDataStore = imageDataStore
         self._productID = productID
         
     }
     
     func updateMain() {
-        guard let model = _dataStore?.product(id:_productID) else {return}
+        guard let model = _productDataStore?.product(id:_productID) else {return}
+        let imageURL = model.imageRef.smallURL ?? model.imageRef.thumbURL ?? ""
+        self.thumbImageURL = NSURL(string: imageURL)
         let newVM = ProductCellMainViewModel(
             productID: model.id,
             title: model.title,
-            price: "\(model.price) €",// FIXME Format with cents
+            price: ProductCellPresenter.priceformatter.string(from: model.price as NSNumber) ?? "",
             isUrgent: model.isUrgent,
             category: model.category.displayName())
         cell?.updateMain(newVM)
     }
+    
+    func updateImage() {
+        _imageDataStore?.getImageData(for: thumbImageURL!) {[weak self]
+            data in self?.cell?.updateImage(data: data! as Data) //FIX Forced cast
+        }
+    }
+
     
 }

@@ -8,7 +8,7 @@
 import UIKit
 
 protocol ProductListCelling: AnyObject {
-//    func updateImage(data: Data)
+    func updateImage(data: Data)
     func updateMain(_ mainViewModel: ProductCellMainViewModel)
 }
 
