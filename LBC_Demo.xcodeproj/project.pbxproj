@@ -7,7 +7,6 @@
 	objects = {
 
 /* Begin PBXBuildFile section */
-		50623A06260F0CD7002E4D11 /* AllProductListNetWorker.swift in Sources */ = {isa = PBXBuildFile; fileRef = 50623A04260F0CD7002E4D11 /* AllProductListNetWorker.swift */; };
 		50623A0F260F10D0002E4D11 /* ProductListViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 50623A0E260F10D0002E4D11 /* ProductListViewController.swift */; };
 		50623A26260F187F002E4D11 /* ProductListNetWorkerIntegrationTests.swift in Sources */ = {isa = PBXBuildFile; fileRef = 50623A25260F187F002E4D11 /* ProductListNetWorkerIntegrationTests.swift */; };
 		50623A4C260F3476002E4D11 /* ProductListInteractorTests.swift in Sources */ = {isa = PBXBuildFile; fileRef = 50623A43260F2D11002E4D11 /* ProductListInteractorTests.swift */; };
@@ -17,10 +16,14 @@
 		50623ABC2611C93B002E4D11 /* DataRepository.h in Headers */ = {isa = PBXBuildFile; fileRef = 50623ABA2611C93B002E4D11 /* DataRepository.h */; settings = {ATTRIBUTES = (Public, ); }; };
 		50623ABF2611C93B002E4D11 /* DataRepository.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 50623AB82611C93B002E4D11 /* DataRepository.framework */; };
 		50623AC02611C93B002E4D11 /* DataRepository.framework in Embed Frameworks */ = {isa = PBXBuildFile; fileRef = 50623AB82611C93B002E4D11 /* DataRepository.framework */; settings = {ATTRIBUTES = (CodeSignOnCopy, RemoveHeadersOnCopy, ); }; };
-		50623ACE2611F2B5002E4D11 /* ProductDataStore.swift in Sources */ = {isa = PBXBuildFile; fileRef = 50623ACD2611F2B5002E4D11 /* ProductDataStore.swift */; };
 		50623AD82611F7E0002E4D11 /* ProductCellInteractor.swift in Sources */ = {isa = PBXBuildFile; fileRef = 50623AD72611F7E0002E4D11 /* ProductCellInteractor.swift */; };
 		50623AE226120510002E4D11 /* ProductListCellFactory.swift in Sources */ = {isa = PBXBuildFile; fileRef = 50623AE126120510002E4D11 /* ProductListCellFactory.swift */; };
 		50623AFC26121787002E4D11 /* ProductCellViewModel.swift in Sources */ = {isa = PBXBuildFile; fileRef = 50623AFB26121787002E4D11 /* ProductCellViewModel.swift */; };
+		50623B21261308DA002E4D11 /* ImageDataStore.swift in Sources */ = {isa = PBXBuildFile; fileRef = 50623B0F261308CD002E4D11 /* ImageDataStore.swift */; };
+		50623B322613120C002E4D11 /* AllProductListNetWorker.swift in Sources */ = {isa = PBXBuildFile; fileRef = 50623A04260F0CD7002E4D11 /* AllProductListNetWorker.swift */; };
+		50623B4D26131333002E4D11 /* BusinessEntities.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 50A8C915260CF3DD00676B54 /* BusinessEntities.framework */; };
+		50623B5E26131359002E4D11 /* ProductDataStore.swift in Sources */ = {isa = PBXBuildFile; fileRef = 50623ACD2611F2B5002E4D11 /* ProductDataStore.swift */; };
+		50623B7C261315E6002E4D11 /* DataRepositoryFactory.swift in Sources */ = {isa = PBXBuildFile; fileRef = 50623B7B261315E6002E4D11 /* DataRepositoryFactory.swift */; };
 		50987E71260E27E100B457E5 /* BusinessEntities.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 50A8C915260CF3DD00676B54 /* BusinessEntities.framework */; };
 		50A8C897260CE51300676B54 /* Assets.xcassets in Resources */ = {isa = PBXBuildFile; fileRef = 50A8C896260CE51300676B54 /* Assets.xcassets */; };
 		50A8C8AA260CE52900676B54 /* AppLauncher.h in Headers */ = {isa = PBXBuildFile; fileRef = 50A8C8A8260CE52900676B54 /* AppLauncher.h */; settings = {ATTRIBUTES = (Public, ); }; };
@@ -67,6 +70,20 @@
 			proxyType = 1;
 			remoteGlobalIDString = 50623AB72611C93B002E4D11;
 			remoteInfo = DataRepository;
+		};
+		50623B4B26131327002E4D11 /* PBXContainerItemProxy */ = {
+			isa = PBXContainerItemProxy;
+			containerPortal = 50A8C882260CE51000676B54 /* Project object */;
+			proxyType = 1;
+			remoteGlobalIDString = 50A8C914260CF3DD00676B54;
+			remoteInfo = BusinessEntities;
+		};
+		50623B8526131681002E4D11 /* PBXContainerItemProxy */ = {
+			isa = PBXContainerItemProxy;
+			containerPortal = 50A8C882260CE51000676B54 /* Project object */;
+			proxyType = 1;
+			remoteGlobalIDString = 50A8C8FC260CF04D00676B54;
+			remoteInfo = ProductListScene;
 		};
 		50987E6E260E27D500B457E5 /* PBXContainerItemProxy */ = {
 			isa = PBXContainerItemProxy;
@@ -181,6 +198,8 @@
 		50623AD72611F7E0002E4D11 /* ProductCellInteractor.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ProductCellInteractor.swift; sourceTree = "<group>"; };
 		50623AE126120510002E4D11 /* ProductListCellFactory.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ProductListCellFactory.swift; sourceTree = "<group>"; };
 		50623AFB26121787002E4D11 /* ProductCellViewModel.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ProductCellViewModel.swift; sourceTree = "<group>"; };
+		50623B0F261308CD002E4D11 /* ImageDataStore.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ImageDataStore.swift; sourceTree = "<group>"; };
+		50623B7B261315E6002E4D11 /* DataRepositoryFactory.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = DataRepositoryFactory.swift; sourceTree = "<group>"; };
 		50A8C88A260CE51000676B54 /* LBC_Demo.app */ = {isa = PBXFileReference; explicitFileType = wrapper.application; includeInIndex = 0; path = LBC_Demo.app; sourceTree = BUILT_PRODUCTS_DIR; };
 		50A8C896260CE51300676B54 /* Assets.xcassets */ = {isa = PBXFileReference; lastKnownFileType = folder.assetcatalog; path = Assets.xcassets; sourceTree = "<group>"; };
 		50A8C89B260CE51300676B54 /* Info.plist */ = {isa = PBXFileReference; lastKnownFileType = text.plist.xml; path = Info.plist; sourceTree = "<group>"; };
@@ -228,6 +247,7 @@
 			isa = PBXFrameworksBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
+				50623B4D26131333002E4D11 /* BusinessEntities.framework in Frameworks */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
@@ -320,9 +340,28 @@
 		50623ACC2611C987002E4D11 /* Sources */ = {
 			isa = PBXGroup;
 			children = (
-				50623ACD2611F2B5002E4D11 /* ProductDataStore.swift */,
+				50623B7A2613146E002E4D11 /* DataRepository */,
+				50623B9F26131AC7002E4D11 /* WK */,
 			);
 			path = Sources;
+			sourceTree = "<group>";
+		};
+		50623B7A2613146E002E4D11 /* DataRepository */ = {
+			isa = PBXGroup;
+			children = (
+				50623B7B261315E6002E4D11 /* DataRepositoryFactory.swift */,
+			);
+			path = DataRepository;
+			sourceTree = "<group>";
+		};
+		50623B9F26131AC7002E4D11 /* WK */ = {
+			isa = PBXGroup;
+			children = (
+				50623B0F261308CD002E4D11 /* ImageDataStore.swift */,
+				50623ACD2611F2B5002E4D11 /* ProductDataStore.swift */,
+				50623A04260F0CD7002E4D11 /* AllProductListNetWorker.swift */,
+			);
+			path = WK;
 			sourceTree = "<group>";
 		};
 		50987E70260E27E100B457E5 /* Frameworks */ = {
@@ -540,7 +579,6 @@
 		50A8C90E260CF1A900676B54 /* WK */ = {
 			isa = PBXGroup;
 			children = (
-				50623A04260F0CD7002E4D11 /* AllProductListNetWorker.swift */,
 			);
 			path = WK;
 			sourceTree = "<group>";
@@ -665,6 +703,8 @@
 			buildRules = (
 			);
 			dependencies = (
+				50623B8626131681002E4D11 /* PBXTargetDependency */,
+				50623B4C26131327002E4D11 /* PBXTargetDependency */,
 			);
 			name = DataRepository;
 			productName = DataRepository;
@@ -967,6 +1007,10 @@
 			isa = PBXSourcesBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
+				50623B7C261315E6002E4D11 /* DataRepositoryFactory.swift in Sources */,
+				50623B21261308DA002E4D11 /* ImageDataStore.swift in Sources */,
+				50623B5E26131359002E4D11 /* ProductDataStore.swift in Sources */,
+				50623B322613120C002E4D11 /* AllProductListNetWorker.swift in Sources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
@@ -1013,8 +1057,6 @@
 			files = (
 				50623AFC26121787002E4D11 /* ProductCellViewModel.swift in Sources */,
 				50A8C938260D042C00676B54 /* ProductListInteractor.swift in Sources */,
-				50623ACE2611F2B5002E4D11 /* ProductDataStore.swift in Sources */,
-				50623A06260F0CD7002E4D11 /* AllProductListNetWorker.swift in Sources */,
 				50623AAB2610BC15002E4D11 /* ProductListCell.swift in Sources */,
 				50623AE226120510002E4D11 /* ProductListCellFactory.swift in Sources */,
 				50623A0F260F10D0002E4D11 /* ProductListViewController.swift in Sources */,
@@ -1062,6 +1104,16 @@
 			isa = PBXTargetDependency;
 			target = 50623AB72611C93B002E4D11 /* DataRepository */;
 			targetProxy = 50623ABD2611C93B002E4D11 /* PBXContainerItemProxy */;
+		};
+		50623B4C26131327002E4D11 /* PBXTargetDependency */ = {
+			isa = PBXTargetDependency;
+			target = 50A8C914260CF3DD00676B54 /* BusinessEntities */;
+			targetProxy = 50623B4B26131327002E4D11 /* PBXContainerItemProxy */;
+		};
+		50623B8626131681002E4D11 /* PBXTargetDependency */ = {
+			isa = PBXTargetDependency;
+			target = 50A8C8FC260CF04D00676B54 /* ProductListScene */;
+			targetProxy = 50623B8526131681002E4D11 /* PBXContainerItemProxy */;
 		};
 		50987E6F260E27D500B457E5 /* PBXTargetDependency */ = {
 			isa = PBXTargetDependency;
@@ -1133,7 +1185,7 @@
 				DYLIB_INSTALL_NAME_BASE = "@rpath";
 				INFOPLIST_FILE = Commons/DataRepository/Info.plist;
 				INSTALL_PATH = "$(LOCAL_LIBRARY_DIR)/Frameworks";
-				IPHONEOS_DEPLOYMENT_TARGET = 14.4;
+				IPHONEOS_DEPLOYMENT_TARGET = 12.1;
 				LD_RUNPATH_SEARCH_PATHS = (
 					"$(inherited)",
 					"@executable_path/Frameworks",
@@ -1161,7 +1213,7 @@
 				DYLIB_INSTALL_NAME_BASE = "@rpath";
 				INFOPLIST_FILE = Commons/DataRepository/Info.plist;
 				INSTALL_PATH = "$(LOCAL_LIBRARY_DIR)/Frameworks";
-				IPHONEOS_DEPLOYMENT_TARGET = 14.4;
+				IPHONEOS_DEPLOYMENT_TARGET = 12.1;
 				LD_RUNPATH_SEARCH_PATHS = (
 					"$(inherited)",
 					"@executable_path/Frameworks",

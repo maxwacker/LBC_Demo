@@ -36,8 +36,6 @@ public protocol ProductDataStoring: AnyObject {
 
 final class ProductListInteractor: ProductListInteractoring {
 
-    
-
     var productsCount: Int {_dataStore.productsCount}
     
     func productID(at row: Int) -> UInt? {

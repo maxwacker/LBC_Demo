@@ -4,7 +4,7 @@
 //
 //  Created by maxime wacker on 29/03/2021.
 //
-import Foundation
+import ProductListScene
 import BusinessEntities
 
 

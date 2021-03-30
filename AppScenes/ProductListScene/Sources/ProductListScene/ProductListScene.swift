@@ -20,29 +20,24 @@ public final class ProductListSceneFactory {
         _presenter
     }
     
-    public var allProductNetWorker: AllProductNetWorking {
-        _allProductNetWorker
-    }
-
-    
     public var viewController: ProductListViewControllering {
         _viewController
     }
     
     
-    private let _router: ProductListRouter
-    private let _presenter: ProductListPresenter
-    private let _allProductNetWorker: AllProductNetWorking
+    private let _router: ProductListRouter  = ProductListRouter()
+    private let _presenter: ProductListPresenter = ProductListPresenter()
     private let _dataStore: ProductDataStoring
     private let _interactor: ProductListInteractor
     private let _viewController: ProductListViewController
     
     
-    public init() {
-        self._router = ProductListRouter()
-        self._presenter = ProductListPresenter()
-        self._allProductNetWorker = AllProductNetWorker()
-        self._dataStore = ProductDataStore(allProductWorker: self._allProductNetWorker/*, imageWorker: */)
+    public init(dataStore: ProductDataStoring) {
+//        self._router = ProductListRouter()
+//        self._presenter = ProductListPresenter()
+        //self._allProductNetWorker = AllProductNetWorker()
+        //self._dataStore = ProductDataStore(allProductWorker: self._allProductNetWorker/*, imageWorker: */)
+        self._dataStore = dataStore
         self._interactor = ProductListInteractor(presenter: self._presenter, dataStore: self._dataStore)
         self._viewController = ProductListViewController(
             interactor: self._interactor,

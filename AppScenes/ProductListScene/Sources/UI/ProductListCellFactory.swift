@@ -27,6 +27,7 @@ final class ProductListCellFactory: ProductListCellFactoring {
         if let productID = _dataStore.productID(at: row) as UInt? {
             let cellPresenter = self.makeCellPresenter(cell: cell as ProductListCelling, productID: productID)
             cellPresenter.updateMain()
+            //cellPresenter.updateImage() {}
             return cell as ProductListCelling
         } else {
             return nil
