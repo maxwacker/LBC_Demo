@@ -6,64 +6,28 @@
 //
 import UIKit
 
-extension UIImage {
-    func scalePreservingAspectRatio(targetSize: CGSize) -> UIImage {
-        // Determine the scale factor that preserves aspect ratio
-        let widthRatio = targetSize.width / size.width
-        let heightRatio = targetSize.height / size.height
-        
-        let scaleFactor = min(widthRatio, heightRatio)
-        
-        // Compute the new image size that preserves aspect ratio
-        let scaledImageSize = CGSize(
-            width: size.width * scaleFactor,
-            height: size.height * scaleFactor
-        )
-
-        // Draw and return the resized UIImage
-        let renderer = UIGraphicsImageRenderer(
-            size: scaledImageSize
-        )
-
-        let scaledImage = renderer.image { _ in
-            self.draw(in: CGRect(
-                origin: .zero,
-                size: scaledImageSize
-            ))
-        }
-           
-           return scaledImage
-       }
-   }
 
 
 final class ProductListCell: UITableViewCell {
+    static let loadingViewTag = 10101010
+
+    public var presenter: ProductListCellPresentering? // Hold a strong ref to presenter to keep it alive
     private var productImageView = UIImageView()
- 
-//    private var productSmallImage: UIImage = UIImage(named: "image_download_placeholder")! {
-//        didSet {
-//            productImageView.image = productSmallImage
-//            self.layoutSubviews()
-//        }
-//    }
-        
+         
     required init?(coder: NSCoder) {
         fatalError("init(coder:) has not been implemented")
     }
     
     override init(style: UITableViewCell.CellStyle, reuseIdentifier: String?) {
         super.init(style: style, reuseIdentifier: reuseIdentifier)
+        productImageView.widthAnchor.constraint(equalToConstant: 100).isActive = true
         
         productImageView.contentMode = .scaleAspectFit
         productImageView.clipsToBounds = true
-        let tmpImage = UIImage(named: "image_download_placeholder")!.scalePreservingAspectRatio(
-            targetSize: CGSize(width: 96, height: 96)
-        )
-        productImageView.image = tmpImage
-        
+
         let textVStack = UIStackView(
             arrangedSubviews: [titleLabel, priceLabel])
-        textVStack.backgroundColor = .darkGray
+        textVStack.backgroundColor = .lightGray
         textVStack.translatesAutoresizingMaskIntoConstraints = false
         textVStack.axis = .vertical
         textVStack.distribution = .fill
@@ -74,7 +38,6 @@ final class ProductListCell: UITableViewCell {
         
         
         let topHStack = UIStackView(arrangedSubviews: [productImageView, textVStack])
-        topHStack.backgroundColor = .blue
         topHStack.translatesAutoresizingMaskIntoConstraints = false
         topHStack.axis = .horizontal
         topHStack.distribution = .fill
@@ -82,7 +45,6 @@ final class ProductListCell: UITableViewCell {
         topHStack.isLayoutMarginsRelativeArrangement = true
         topHStack.directionalLayoutMargins = NSDirectionalEdgeInsets(top: 5, leading: 5, bottom: 5, trailing: 5)
         contentView.layoutMargins.right = 5
-        contentView.backgroundColor = .red
         
         contentView.addSubview(topHStack)
         
@@ -91,12 +53,30 @@ final class ProductListCell: UITableViewCell {
         topHStack.topAnchor.constraint(equalTo: contentView.topAnchor).isActive = true
         topHStack.bottomAnchor.constraint(equalTo: contentView.bottomAnchor).isActive = true
         
+        self.showImageLoading()
         
     }
     
+    func showImageLoading(style: UIActivityIndicatorView.Style = .gray){
+        let loading = (viewWithTag(ProductListCell.loadingViewTag) as? UIActivityIndicatorView) ?? UIActivityIndicatorView(style: style)
+        loading.translatesAutoresizingMaskIntoConstraints = false
+        loading.startAnimating()
+        loading.hidesWhenStopped = true
+        loading.tag = ProductListCell.loadingViewTag
+        productImageView.addSubview(loading)
+        loading.centerYAnchor.constraint(equalTo: productImageView.centerYAnchor).isActive = true
+        loading.centerXAnchor.constraint(equalTo: productImageView.centerXAnchor).isActive = true
+    }
+    
+    func stopLoading() {
+        let loading = viewWithTag(ProductListCell.loadingViewTag) as? UIActivityIndicatorView
+        loading?.stopAnimating()
+        loading?.removeFromSuperview()
+    }
+    
+    
     var productItem: ProductCellMainViewModel? {
         didSet {
-            //productImage.image = product?.productImage
             titleLabel.text = productItem?.title
             priceLabel.text = productItem?.price
         }
@@ -105,7 +85,6 @@ final class ProductListCell: UITableViewCell {
     private let titleLabel : UILabel = {
         let lbl = UILabel()
         lbl.setContentHuggingPriority(UILayoutPriority(rawValue: 0), for: .horizontal)
-        lbl.backgroundColor = .lightGray
         lbl.textColor = .black
         lbl.numberOfLines = 2
         lbl.font = UIFont.boldSystemFont(ofSize: 16)
@@ -133,15 +112,17 @@ final class ProductListCell: UITableViewCell {
 extension ProductListCell: ProductListCelling{
     func updateImage(data: Data) {
         let image = UIImage(data: data) ?? UIImage(named: "image_download_placeholder")!
-        let scaledImage = image.scalePreservingAspectRatio(
-            targetSize: CGSize(width: 96, height: 96)
-        )
-        self.productImageView.image = scaledImage
-        self.layoutSubviews()
+        DispatchQueue.main.async  {
+            self.stopLoading()
+            self.productImageView.image = image
+            self.layoutSubviews()
+        }
     }
     
     func updateMain(_ mainViewModel: ProductCellMainViewModel) {
-        productItem = mainViewModel
+        DispatchQueue.main.async  {
+            self.productItem = mainViewModel
+        }
     }
     
     

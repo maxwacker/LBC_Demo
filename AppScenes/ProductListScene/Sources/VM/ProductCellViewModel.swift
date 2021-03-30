@@ -18,7 +18,7 @@ final class ProductCellPresenter: ProductListCellPresentering {
     }
 
         
-    var cell: ProductListCelling?
+    weak var cell: ProductListCelling?
     private var _productID: UInt
     weak var _productDataStore: ProductDataStoring?
     weak var _imageDataStore: ImageDataStoring?
