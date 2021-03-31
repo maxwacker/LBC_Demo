@@ -7,64 +7,64 @@
       <BreakpointProxy
          BreakpointExtensionID = "Xcode.Breakpoint.FileBreakpoint">
          <BreakpointContent
-            uuid = "E89C899D-BB4C-448D-AB34-6514C25FD3E7"
+            uuid = "5F152620-6628-4DD7-841D-5BC953FFDC88"
             shouldBeEnabled = "Yes"
             ignoreCount = "0"
             continueAfterRunningActions = "No"
-            filePath = "AppScenes/ProductListScene/Sources/VM/ProductCellViewModel.swift"
+            filePath = "AppScenes/ProductDetailScene/UI/ProductDetailViewController.swift"
             startingColumnNumber = "9223372036854775807"
             endingColumnNumber = "9223372036854775807"
-            startingLineNumber = "34"
-            endingLineNumber = "34"
-            landmarkName = "updateMain()"
+            startingLineNumber = "105"
+            endingLineNumber = "105"
+            landmarkName = "refresh(with:)"
             landmarkType = "7">
          </BreakpointContent>
       </BreakpointProxy>
       <BreakpointProxy
          BreakpointExtensionID = "Xcode.Breakpoint.FileBreakpoint">
          <BreakpointContent
-            uuid = "D8C0438F-3E91-465C-A5ED-652CCF147561"
+            uuid = "CC815C2E-11A2-4845-A30A-A751752DE9E5"
             shouldBeEnabled = "Yes"
             ignoreCount = "0"
             continueAfterRunningActions = "No"
-            filePath = "AppScenes/ProductListScene/Sources/UI/ProductListViewController.swift"
+            filePath = "AppScenes/ProductDetailScene/VM/ProductDetailPresenter.swift"
             startingColumnNumber = "9223372036854775807"
             endingColumnNumber = "9223372036854775807"
-            startingLineNumber = "74"
-            endingLineNumber = "74"
-            landmarkName = "tableView(_:cellForRowAt:)"
+            startingLineNumber = "44"
+            endingLineNumber = "44"
+            landmarkName = "updateDetailMain(_:)"
             landmarkType = "7">
          </BreakpointContent>
       </BreakpointProxy>
       <BreakpointProxy
          BreakpointExtensionID = "Xcode.Breakpoint.FileBreakpoint">
          <BreakpointContent
-            uuid = "08ABC460-B9A7-434A-AB62-477F8DC96825"
+            uuid = "95246E13-1AFF-48D9-B78C-0A1BCC993B56"
             shouldBeEnabled = "Yes"
             ignoreCount = "0"
             continueAfterRunningActions = "No"
-            filePath = "AppScenes/ProductListScene/Sources/UI/ProductListCell.swift"
+            filePath = "AppScenes/ProductDetailScene/ProductDetailScene/ProductDetailSceneFactory.swift"
             startingColumnNumber = "9223372036854775807"
             endingColumnNumber = "9223372036854775807"
-            startingLineNumber = "125"
-            endingLineNumber = "125"
-            landmarkName = "updateMain(_:)"
+            startingLineNumber = "62"
+            endingLineNumber = "62"
+            landmarkName = "init(dataRepositoryFactory:productID:)"
             landmarkType = "7">
          </BreakpointContent>
       </BreakpointProxy>
       <BreakpointProxy
          BreakpointExtensionID = "Xcode.Breakpoint.FileBreakpoint">
          <BreakpointContent
-            uuid = "AB573326-D610-40F1-9947-68C7910EB649"
+            uuid = "03D618B7-96E1-4AF3-AFFA-A0076639BDC0"
             shouldBeEnabled = "Yes"
             ignoreCount = "0"
             continueAfterRunningActions = "No"
-            filePath = "AppScenes/ProductListScene/Sources/VM/ProductCellViewModel.swift"
+            filePath = "AppScenes/ProductListScene/Sources/RT/ProductListRouter.swift"
             startingColumnNumber = "9223372036854775807"
             endingColumnNumber = "9223372036854775807"
-            startingLineNumber = "27"
-            endingLineNumber = "27"
-            landmarkName = "updateMain()"
+            startingLineNumber = "55"
+            endingLineNumber = "55"
+            landmarkName = "route(to:)"
             landmarkType = "7">
          </BreakpointContent>
       </BreakpointProxy>

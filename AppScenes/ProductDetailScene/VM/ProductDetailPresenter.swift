@@ -9,6 +9,7 @@ import BusinessEntities
 
 public protocol ProductDetailViewControllering: AnyObject {
     func refresh(with viewModel: ProductDetailMainViewModel)
+    func updateImage(data: Data)
 }
 
 public struct ProductDetailMainViewModel {
@@ -39,7 +40,7 @@ extension ProductCategory {
 final class ProductDetailPresenter: ProductDetailPresentering {
     weak var _viewController: ProductDetailViewControllering?
     
-    func updateDetail(_ productRecord:ProductRecord){
+    func updateDetailMain(_ productRecord:ProductRecord){
         _viewController?.refresh(
             with: ProductDetailMainViewModel(
                 productID: productRecord.id,
@@ -50,5 +51,8 @@ final class ProductDetailPresenter: ProductDetailPresentering {
         )
     }
     
-    
+    func updateDetailImage(data : Data) {
+            guard let data = data as Data? else {return}
+        self._viewController?.updateImage(data: data)
+        }
 }

@@ -29,7 +29,8 @@ public protocol ProductDetailRouting: GenRouting {
 
 // Presenter
 public protocol ProductDetailPresentering {
-    func updateDetail(_ productRecord:ProductRecord)
+    func updateDetailMain(_ productRecord:ProductRecord)
+    func updateDetailImage(data: Data)
 }
 
 final class ProductDetailInteractor: ProductDetailInteractoring {
@@ -37,6 +38,7 @@ final class ProductDetailInteractor: ProductDetailInteractoring {
     let _router: ProductDetailRouting
     let _presenter: ProductDetailPresentering
     let _productDetailDataStore: ProductDetailDataStoring
+    let _imageDetailDataStore: ImageDetailDataStoring
     
     let _productID: UInt
     
@@ -44,16 +46,26 @@ final class ProductDetailInteractor: ProductDetailInteractoring {
         productID: UInt,
         router: ProductDetailRouting,
         presenter: ProductDetailPresentering,
-        productDetailDataStore: ProductDetailDataStoring
+        productDetailDataStore: ProductDetailDataStoring,
+        imageDetailDataStore: ImageDetailDataStoring
     ) {
         self._productID = productID
         self._router = router
         self._presenter = presenter
         self._productDetailDataStore = productDetailDataStore
+        self._imageDetailDataStore = imageDetailDataStore
     }
     
     func loadContent() {
-        _presenter.updateDetail(_productDetailDataStore.product(id: _productID)!)
+        guard let productRecord = _productDetailDataStore.product(id: _productID)
+        else { return }
+        _presenter.updateDetailMain(productRecord)
+        guard let imageURL = NSURL(string :productRecord.imageRef.smallURL ?? productRecord.imageRef.thumbURL ?? "") else { return }
+        _imageDetailDataStore.getImageData(for: imageURL) {[weak self]
+            data in
+            guard let data = data as Data? else {return}
+            self?._presenter.updateDetailImage(data: data)
+        }
     }
     
 }

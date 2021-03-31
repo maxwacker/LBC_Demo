@@ -51,7 +51,8 @@ public final class ProductDetailSceneFactory {
             productID: productID,
             router: self._router,
             presenter: self._presenter,
-            productDetailDataStore: self._productDataStore
+            productDetailDataStore: self._productDataStore,
+            imageDetailDataStore: self._imageDataStore
         )
         self._viewController = ProductDetailViewController(
             interactor: self._interactor

@@ -11,7 +11,10 @@ import UIKit
 final class ProductListCell: UITableViewCell {
     static let loadingViewTag = 10101010
 
-    public var presenter: ProductListCellPresentering? // Hold a strong ref to presenter to keep it alive
+    // Hold a strong ref to presenter to keep it alive
+    // Since we have no interactor for the cell in this current
+    // implementation
+    public var presenter: ProductListCellPresentering?
     private var productImageView = UIImageView()
          
     required init?(coder: NSCoder) {
