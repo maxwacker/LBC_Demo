@@ -6,15 +6,21 @@
 //
 
 import UIKit
-
 import GenRouting
 
+
+
 public final class ProductListRouter: GenRouting {
+    
     weak var _viewController: ProductListViewControllering?
     private var _parentRouter: GenRouting?
+    private var _detailRouter: GenRouting?
     
-    public init(_ parentRouter: GenRouting? = nil) {
+    public init(_ parentRouter: GenRouting? = nil, detailRouter: GenRouting) {
         self._parentRouter = parentRouter
+        self._detailRouter = detailRouter
+        
+        _detailRouter?.parentRouter = self
     }
     
     public var navigator: Navigating? {
@@ -22,8 +28,14 @@ public final class ProductListRouter: GenRouting {
     }
     
     public var parentRouter: GenRouting? {
-      _parentRouter
+        get {
+            _parentRouter
+        }
+        set {
+            _parentRouter = newValue
+        }
     }
+
     
     public var viewController: UIViewController {
       _viewController as! UIViewController // FIX this forced cast ?
@@ -35,9 +47,13 @@ public final class ProductListRouter: GenRouting {
     
 }
 
-extension ProductListRouter: ProductListRoutering {
+extension ProductListRouter: ProductListRouting {
     public func route(to destination: ProductListRouteDestination) {
-        print("Routing to \(destination)")
+        switch destination {
+        case .productDetail(let productID):
+            // put productID in Scene
+            _detailRouter?.start()
+        }
     }
     
     

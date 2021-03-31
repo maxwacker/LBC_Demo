@@ -23,7 +23,7 @@ extension UINavigationController: Navigating {
 }
 
 public protocol GenRouting: AnyObject {
-    var parentRouter: GenRouting? { get } // Root router has no parent
+    var parentRouter: GenRouting? { set get } // Root router has no parent
     var viewController: UIViewController { get }
     var navigator : Navigating? { get }
     func start()

@@ -38,8 +38,14 @@ extension NavigationRouter: GenRouting {
     }
     
     public var parentRouter: GenRouting? {
-      _parentRouter
+        get {
+            _parentRouter
+        }
+        set {
+            _parentRouter = newValue
+        }
     }
+
         
     public func start() {
     }

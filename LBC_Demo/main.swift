@@ -10,16 +10,21 @@ import Foundation
 import GenRouting
 
 import AppLauncher
+import DataRepository
+
 import RootNavScene
 import ProductListScene
-import DataRepository
+import ProductDetailScene
 
 let dataRepositoryFactory = DataRepositoryFactory()
 let rootSceneFactory = RootNavSceneFactory()
+let productDetailScene = ProductDetailSceneFactory()
 let productListSceneFactory = ProductListSceneFactory(
+    detailRouter: productDetailScene.router,
     productDataStore: dataRepositoryFactory.productDataStore,
     imageDataStore: dataRepositoryFactory.imageDataStore
 )
+
 rootSceneFactory.router.push(productListSceneFactory.router)
 
 AppLauncher.launchApp(rootRouter: rootSceneFactory.router as GenRouting)

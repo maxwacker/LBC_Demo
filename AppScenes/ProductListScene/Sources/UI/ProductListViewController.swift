@@ -22,8 +22,7 @@ protocol ProductListCellFactoring {
 
 public protocol ProductListInteractoring {
     var productsCount: Int {get}
-    //func productID(at row: Int) -> UInt?
-    //func dataStoreUpdated()
+    func productSelected(at: Int)
 }
 
 final class ProductListViewController: UITableViewController {
@@ -67,6 +66,10 @@ final class ProductListViewController: UITableViewController {
         return (_cellFactory.makeProductListCell(at: indexPath, in: tableView) as? UITableViewCell) ?? UITableViewCell()
     }
     
+    // MARK: Table view delegate
+    public override func tableView(_ tableView: UITableView, didSelectRowAt indexPath: IndexPath) {
+        _interactor.productSelected(at: indexPath.row)
+    }
 }
 
 
@@ -77,3 +80,4 @@ extension ProductListViewController: ProductListViewControllering {
         }
     }
 }
+

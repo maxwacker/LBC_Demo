@@ -29,6 +29,11 @@
 			<key>orderHint</key>
 			<integer>5</integer>
 		</dict>
+		<key>ProductDetailScene.xcscheme_^#shared#^_</key>
+		<dict>
+			<key>orderHint</key>
+			<integer>9</integer>
+		</dict>
 		<key>ProductEntitesTests.xcscheme_^#shared#^_</key>
 		<dict>
 			<key>orderHint</key>
@@ -52,6 +57,11 @@
 	</dict>
 	<key>SuppressBuildableAutocreation</key>
 	<dict>
+		<key>50623BE1261380F3002E4D11</key>
+		<dict>
+			<key>primary</key>
+			<true/>
+		</dict>
 		<key>50A8C8FC260CF04D00676B54</key>
 		<dict>
 			<key>primary</key>
