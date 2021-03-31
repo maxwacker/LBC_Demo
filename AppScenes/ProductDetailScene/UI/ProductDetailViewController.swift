@@ -16,16 +16,32 @@ final class ProductDetailViewController: UIViewController {
     private let _interactor: ProductDetailInteractoring
     
     private let titleLabel : UILabel = {
-        let lbl = UILabel()
+        let titleLabel = UILabel()
         //lbl.setContentHuggingPriority(UILayoutPriority(rawValue: 0), for: .horizontal)
-        lbl.textColor = .black
-        lbl.numberOfLines = 2
-        lbl.font = UIFont.boldSystemFont(ofSize: 16)
-        lbl.textAlignment = .left
-        return lbl
+        titleLabel.textColor = .black
+        titleLabel.numberOfLines = 2
+        titleLabel.font = UIFont.boldSystemFont(ofSize: 16)
+        titleLabel.textAlignment = .left
+        return titleLabel
     }()
     
-    private var productImageView = UIImageView()
+    private lazy var productImageView: UIImageView = {
+        let productImageView = UIImageView()
+        productImageView.contentMode = .scaleAspectFit
+        productImageView.clipsToBounds = true
+        productImageView.widthAnchor.constraint(equalToConstant: 200).isActive = true
+        return productImageView
+    }()
+    
+    lazy var descriptionView: UITextView = {
+        let descriptionView = UITextView()
+        //lbl.setContentHuggingPriority(UILayoutPriority(rawValue: 0), for: .horizontal)
+        descriptionView.textColor = .black
+        //descriptionView.numberOfLines = 0
+        descriptionView.font = UIFont.boldSystemFont(ofSize: 16)
+        descriptionView.textAlignment = .left
+        return descriptionView
+    }()
 
     lazy var headerHStack: UIStackView = {
         let headerHStack = UIStackView(arrangedSubviews: [productImageView, titleLabel])
@@ -40,7 +56,7 @@ final class ProductDetailViewController: UIViewController {
     }()
     
     lazy var topVStack: UIStackView = {
-        let topVStack = UIStackView(arrangedSubviews: [headerHStack])
+        let topVStack = UIStackView(arrangedSubviews: [headerHStack, descriptionView])
         topVStack.backgroundColor = .lightGray
         topVStack.translatesAutoresizingMaskIntoConstraints = false
         topVStack.axis = .vertical
@@ -102,7 +118,10 @@ extension ProductDetailViewController: ProductDetailViewControllering {
     }
     
     func refresh(with viewModel: ProductDetailMainViewModel) {
-        titleLabel.text = viewModel.title
+        DispatchQueue.main.async  {
+            self.titleLabel.text = viewModel.title
+            self.descriptionView.text = viewModel.description
+        }
     }
     
     

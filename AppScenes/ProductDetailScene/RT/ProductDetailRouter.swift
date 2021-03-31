@@ -35,6 +35,8 @@ public final class ProductDetailRouter: GenRouting {
     
     public func start() {
         parentRouter?.navigator?.push(vc: viewController)
+        // FIXME : This is dirty workaround to avoid crash when gesture occur in Detail Screen
+        (parentRouter?.navigator as? UINavigationController)?.interactivePopGestureRecognizer?.isEnabled = false
     }
     
 }

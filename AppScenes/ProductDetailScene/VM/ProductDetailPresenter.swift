@@ -14,15 +14,23 @@ public protocol ProductDetailViewControllering: AnyObject {
 
 public struct ProductDetailMainViewModel {
     let productID: UInt
-    //let imageID: String?
     let title: String
+    let description: String
     let price: String
     let isUrgent: Bool
     let category: String
     
-    internal init(productID: UInt, title: String, price: String, isUrgent: Bool, category: String) {
+    internal init(
+        productID: UInt,
+        title: String,
+        description: String,
+        price: String,
+        isUrgent: Bool,
+        category: String
+    ) {
         self.productID = productID
         self.title = title
+        self.description = description
         self.price = price
         self.isUrgent = isUrgent
         self.category = category
@@ -45,6 +53,7 @@ final class ProductDetailPresenter: ProductDetailPresentering {
             with: ProductDetailMainViewModel(
                 productID: productRecord.id,
                 title: productRecord.title,
+                description: productRecord.description,
                 price: "\(productRecord.price)",
                 isUrgent: productRecord.isUrgent,
                 category: productRecord.category.displayName())
