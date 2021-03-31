@@ -6,19 +6,28 @@
 //
 
 import ProductListScene
+import ProductDetailScene
 
 public final class DataRepositoryFactory {
-    public var productDataStore: ProductDataStoring {
+    public var productListDataStore: ProductListDataStoring {
         _productDataStore
     }
     
-    public var imageDataStore: ImageDataStoring {
+    public var imageListDataStore: ImageListDataStoring {
+        _imageDataStore
+    }
+
+    public var productDetailDataStore: ProductDetailDataStoring {
+        _productDataStore
+    }
+    
+    public var imageDetailDataStore: ImageDetailDataStoring {
         _imageDataStore
     }
 
     
-    private let _productDataStore: ProductDataStoring
-    private let _imageDataStore: ImageDataStoring
+    private let _productDataStore: ProductListDataStoring & ProductDetailDataStoring
+    private let _imageDataStore: ImageListDataStoring & ImageDetailDataStoring
 
     private let _allProductNetWorker: AllProductNetWorking = AllProductNetWorker()
     private let _imageLoader: ImageLoading = ImageLoader()
@@ -30,3 +39,7 @@ public final class DataRepositoryFactory {
     }
     
 }
+
+extension DataRepositoryFactory: ListDataStoring {}
+extension DataRepositoryFactory: DetailDataStoring {}
+

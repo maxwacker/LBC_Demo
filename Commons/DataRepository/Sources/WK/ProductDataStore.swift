@@ -4,9 +4,10 @@
 //
 //  Created by maxime wacker on 29/03/2021.
 //
-import ProductListScene
 import BusinessEntities
 
+import ProductListScene
+import ProductDetailScene
 
 // Worker
 public protocol AllProductNetWorking {
@@ -17,7 +18,21 @@ protocol ImageNetWorking {
     func loadJPG(from: URL, handler: @escaping (Result<Data, Error>) -> Void)
 }
 
-final class ProductDataStore: ProductDataStoring {
+final class ProductDataStore: ProductListDataStoring & ProductDetailDataStoring {
+    private var _productModels = [ProductRecord]()
+    
+    private var _idToRecordIdx = [UInt: Int]()
+    private var _URLToJPGData = [URL: Data]()
+    
+    private var _allProductsNetWorking: AllProductNetWorking
+        
+    init(
+        allProductWorker: AllProductNetWorking = AllProductNetWorker()
+        ) {
+        self._allProductsNetWorking = allProductWorker
+    }
+
+    
     func product(id: UInt) -> ProductRecord? {
         guard let recordIndex = _idToRecordIdx[id] else {return nil}
         return _productModels[recordIndex]
@@ -29,21 +44,6 @@ final class ProductDataStore: ProductDataStoring {
     
     func productID(at rank: Int) -> UInt? {
         return _productModels[rank].id as UInt
-    }
-    
-    private var _productModels = [ProductRecord]()
-    
-    private var _idToRecordIdx = [UInt: Int]()
-    private var _URLToJPGData = [URL: Data]()
-    
-    private var _allProductsNetWorking: AllProductNetWorking
-    //private var _imageNetWorking: ImageNetWorking
-    
-    init(
-        allProductWorker: AllProductNetWorking //,imageWorker: ImageNetWorking
-        ) {
-        self._allProductsNetWorking = allProductWorker
-        //self._imageNetWorking = imageWorker
     }
     
     private func buildIDIdx() {

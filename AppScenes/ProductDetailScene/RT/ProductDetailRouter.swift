@@ -11,7 +11,7 @@ import GenRouting
 public final class ProductDetailRouter: GenRouting {
     weak var _viewController: ProductDetailViewControllering?
     private var _parentRouter: GenRouting?
-    
+
     public init(_ parentRouter: GenRouting? = nil) {
         self._parentRouter = parentRouter
     }
@@ -40,6 +40,7 @@ public final class ProductDetailRouter: GenRouting {
 }
 
 extension ProductDetailRouter: ProductDetailRouting {
+    
     public func route(to destination: ProductDetailRouteDestination) {
         switch destination {
         case .back:

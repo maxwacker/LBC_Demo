@@ -8,19 +8,18 @@
 import UIKit
 import GenRouting
 
+import ProductDetailScene
 
 
 public final class ProductListRouter: GenRouting {
     
     weak var _viewController: ProductListViewControllering?
     private var _parentRouter: GenRouting?
-    private var _detailRouter: GenRouting?
+    private var _detailSceneFactoryBuilder: (UInt) -> ProductDetailSceneFactory
     
-    public init(_ parentRouter: GenRouting? = nil, detailRouter: GenRouting) {
+    public init(_ parentRouter: GenRouting? = nil, detailSceneFactoryBuilder: @escaping (UInt) -> ProductDetailSceneFactory) {
         self._parentRouter = parentRouter
-        self._detailRouter = detailRouter
-        
-        _detailRouter?.parentRouter = self
+        self._detailSceneFactoryBuilder = detailSceneFactoryBuilder
     }
     
     public var navigator: Navigating? {
@@ -51,8 +50,10 @@ extension ProductListRouter: ProductListRouting {
     public func route(to destination: ProductListRouteDestination) {
         switch destination {
         case .productDetail(let productID):
-            // put productID in Scene
-            _detailRouter?.start()
+            let detailFactory = _detailSceneFactoryBuilder(productID)
+            let detailRouter = detailFactory.router
+            detailRouter.parentRouter = self
+            detailRouter.start()
         }
     }
     

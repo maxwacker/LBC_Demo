@@ -6,6 +6,12 @@
 //
 
 import GenRouting
+import ProductDetailScene
+
+public protocol ListDataStoring {
+    var productListDataStore: ProductListDataStoring {get}
+    var imageListDataStore: ImageListDataStoring {get}
+}
 
 public final class ProductListSceneFactory {
     public var router: ProductListRouting  {
@@ -26,23 +32,23 @@ public final class ProductListSceneFactory {
     
     
     private let _router: ProductListRouting
-    private let _detailRouter: GenRouting?
     private let _presenter: ProductListPresentering = ProductListPresenter()
-    private let _productDataStore: ProductDataStoring
-    private let _imageDataStore: ImageDataStoring
+    private let _productDataStore: ProductListDataStoring
+    private let _imageDataStore: ImageListDataStoring
     private let _interactor: ProductListInteractor
     private let _viewController: ProductListViewController
     
     
     public init(
-        detailRouter: GenRouting,
-        productDataStore: ProductDataStoring,
-        imageDataStore: ImageDataStoring
+        dataRepositoryFactory: ListDataStoring,
+        detailSceneFactoryBuilder: @escaping (UInt) -> ProductDetailSceneFactory
+
     ) {
-        self._detailRouter = detailRouter
-        self._router = ProductListRouter(detailRouter: detailRouter)
-        self._productDataStore = productDataStore
-        self._imageDataStore = imageDataStore
+        self._router = ProductListRouter(
+            detailSceneFactoryBuilder: detailSceneFactoryBuilder)
+      
+        self._productDataStore = dataRepositoryFactory.productListDataStore
+        self._imageDataStore = dataRepositoryFactory.imageListDataStore
         self._interactor = ProductListInteractor(
             router: self._router,
             presenter: self._presenter,

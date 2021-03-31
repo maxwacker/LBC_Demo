@@ -20,15 +20,15 @@ final class ProductCellPresenter: ProductListCellPresentering {
         
     weak var cell: ProductListCelling?
     private var _productID: UInt
-    weak var _productDataStore: ProductDataStoring?
-    weak var _imageDataStore: ImageDataStoring?
+    weak var _productDataStore: ProductListDataStoring?
+    weak var _imageDataStore: ImageListDataStoring?
     private var thumbImageURL: NSURL?
     
     
     init(
         cell: ProductListCelling,
-        productDataStore: ProductDataStoring,
-        imageDataStore: ImageDataStoring,
+        productDataStore: ProductListDataStoring,
+        imageDataStore: ImageListDataStoring,
         productID: UInt) {
         self.cell = cell
         self._productDataStore = productDataStore

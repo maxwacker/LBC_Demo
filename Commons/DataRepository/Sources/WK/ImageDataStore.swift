@@ -6,13 +6,16 @@
 //
 
 import Foundation
+
 import ProductListScene
+import ProductDetailScene
 
 protocol ImageLoading {
     func load(url: NSURL,handler: @escaping (Result<NSData, Error>) -> Void)
 }
 
-final class ImageDataStore: ImageDataStoring {
+final class ImageDataStore: ImageListDataStoring & ImageDetailDataStoring {
+    
     private let _imageLoader: ImageLoading
     private let _imageDataCache = NSCache<NSURL, NSData>()
     private var _loadingResponses = [NSURL: [(NSData?) -> Void]]()

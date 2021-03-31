@@ -18,11 +18,27 @@ import ProductDetailScene
 
 let dataRepositoryFactory = DataRepositoryFactory()
 let rootSceneFactory = RootNavSceneFactory()
-let productDetailScene = ProductDetailSceneFactory()
+//let productDetailScene = ProductDetailSceneFactory(
+//    productDataStore: dataRepositoryFactory.productDataStore,
+//    imageDataStore: dataRepositoryFactory.imageDataStore
+//)
+//let productListSceneFactory = ProductListSceneFactory(
+//    detailRouter: productDetailScene.router,
+//    productDataStore: dataRepositoryFactory.productDataStore,
+//    imageDataStore: dataRepositoryFactory.imageDataStore
+//)
+//let productDetailScene = ProductDetailSceneFactory(
+//    dataRepositoryFactory: dataRepositoryFactory
+//)
 let productListSceneFactory = ProductListSceneFactory(
-    detailRouter: productDetailScene.router,
-    productDataStore: dataRepositoryFactory.productDataStore,
-    imageDataStore: dataRepositoryFactory.imageDataStore
+    dataRepositoryFactory: dataRepositoryFactory as ListDataStoring,
+    detailSceneFactoryBuilder: {
+        productID in
+        ProductDetailSceneFactory(
+            dataRepositoryFactory: dataRepositoryFactory as DetailDataStoring,
+            productID: productID
+        )
+    }
 )
 
 rootSceneFactory.router.push(productListSceneFactory.router)

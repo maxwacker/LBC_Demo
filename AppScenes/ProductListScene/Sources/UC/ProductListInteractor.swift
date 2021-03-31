@@ -28,12 +28,12 @@ final class ProductListInteractor: ProductListInteractoring {
 
     let _router: ProductListRouting
     let _presenter: ProductListPresentering
-    let _productDataStore: ProductDataStoring
+    let _productDataStore: ProductListDataStoring
     
     public init(
         router: ProductListRouting,
         presenter: ProductListPresentering,
-        productDataStore: ProductDataStoring
+        productDataStore: ProductListDataStoring
     ) {
         self._router = router
         self._presenter = presenter

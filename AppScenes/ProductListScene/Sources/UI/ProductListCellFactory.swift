@@ -8,12 +8,12 @@
 import UIKit
 
 final class ProductListCellFactory: ProductListCellFactoring {
-    private let _productDataStore: ProductDataStoring
-    private let _imageDataStore: ImageDataStoring
+    private let _productDataStore: ProductListDataStoring
+    private let _imageDataStore: ImageListDataStoring
     
     init(
-        productDataStore: ProductDataStoring,
-        imageDataStore: ImageDataStoring
+        productDataStore: ProductListDataStoring,
+        imageDataStore: ImageListDataStoring
     ) {
         self._productDataStore = productDataStore
         self._imageDataStore = imageDataStore

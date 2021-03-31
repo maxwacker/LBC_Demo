@@ -9,7 +9,7 @@ import BusinessEntities
 
 
 // Data Store
-public protocol ProductDataStoring: AnyObject {
+public protocol ProductListDataStoring: AnyObject {
     func loadProducts(done: @escaping ()->Void)
     var productsCount: Int {get}
     func productID(at rank: Int) -> UInt?
@@ -17,7 +17,7 @@ public protocol ProductDataStoring: AnyObject {
 
 }
 
-public protocol ImageDataStoring: AnyObject {
+public protocol ImageListDataStoring: AnyObject {
     func getImageData(for url: NSURL, completion: @escaping (NSData?) -> Void)
 }
 

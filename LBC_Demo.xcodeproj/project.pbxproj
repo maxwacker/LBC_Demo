@@ -32,7 +32,7 @@
 		50623C06261382C0002E4D11 /* ProductDetailSceneFactory.swift in Sources */ = {isa = PBXBuildFile; fileRef = 50623C05261382C0002E4D11 /* ProductDetailSceneFactory.swift */; };
 		50623C1326138690002E4D11 /* ProductDetailInteractor.swift in Sources */ = {isa = PBXBuildFile; fileRef = 50623C1226138690002E4D11 /* ProductDetailInteractor.swift */; };
 		50623C272613873D002E4D11 /* ProductDetailViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 50623C262613873D002E4D11 /* ProductDetailViewController.swift */; };
-		50623C3326138835002E4D11 /* ProdcutDetailPresenter.swift in Sources */ = {isa = PBXBuildFile; fileRef = 50623C3226138835002E4D11 /* ProdcutDetailPresenter.swift */; };
+		50623C3326138835002E4D11 /* ProductDetailPresenter.swift in Sources */ = {isa = PBXBuildFile; fileRef = 50623C3226138835002E4D11 /* ProductDetailPresenter.swift */; };
 		50623C5C26145353002E4D11 /* BusinessEntities.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 50A8C915260CF3DD00676B54 /* BusinessEntities.framework */; };
 		50623C5D26145353002E4D11 /* GenRouting.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 50A8C8C3260CE68200676B54 /* GenRouting.framework */; };
 		50987E71260E27E100B457E5 /* BusinessEntities.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 50A8C915260CF3DD00676B54 /* BusinessEntities.framework */; };
@@ -96,13 +96,6 @@
 			remoteGlobalIDString = 50A8C8FC260CF04D00676B54;
 			remoteInfo = ProductListScene;
 		};
-		50623BE7261380F3002E4D11 /* PBXContainerItemProxy */ = {
-			isa = PBXContainerItemProxy;
-			containerPortal = 50A8C882260CE51000676B54 /* Project object */;
-			proxyType = 1;
-			remoteGlobalIDString = 50623BE1261380F3002E4D11;
-			remoteInfo = ProductDetailScene;
-		};
 		50623C582614533D002E4D11 /* PBXContainerItemProxy */ = {
 			isa = PBXContainerItemProxy;
 			containerPortal = 50A8C882260CE51000676B54 /* Project object */;
@@ -116,6 +109,13 @@
 			proxyType = 1;
 			remoteGlobalIDString = 50A8C8C2260CE68200676B54;
 			remoteInfo = GenRouting;
+		};
+		50623C7026145B13002E4D11 /* PBXContainerItemProxy */ = {
+			isa = PBXContainerItemProxy;
+			containerPortal = 50A8C882260CE51000676B54 /* Project object */;
+			proxyType = 1;
+			remoteGlobalIDString = 50623BE1261380F3002E4D11;
+			remoteInfo = ProductDetailScene;
 		};
 		50987E6E260E27D500B457E5 /* PBXContainerItemProxy */ = {
 			isa = PBXContainerItemProxy;
@@ -241,7 +241,7 @@
 		50623C05261382C0002E4D11 /* ProductDetailSceneFactory.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ProductDetailSceneFactory.swift; sourceTree = "<group>"; };
 		50623C1226138690002E4D11 /* ProductDetailInteractor.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ProductDetailInteractor.swift; sourceTree = "<group>"; };
 		50623C262613873D002E4D11 /* ProductDetailViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ProductDetailViewController.swift; sourceTree = "<group>"; };
-		50623C3226138835002E4D11 /* ProdcutDetailPresenter.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ProdcutDetailPresenter.swift; sourceTree = "<group>"; };
+		50623C3226138835002E4D11 /* ProductDetailPresenter.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ProductDetailPresenter.swift; sourceTree = "<group>"; };
 		50A8C88A260CE51000676B54 /* LBC_Demo.app */ = {isa = PBXFileReference; explicitFileType = wrapper.application; includeInIndex = 0; path = LBC_Demo.app; sourceTree = BUILT_PRODUCTS_DIR; };
 		50A8C896260CE51300676B54 /* Assets.xcassets */ = {isa = PBXFileReference; lastKnownFileType = folder.assetcatalog; path = Assets.xcassets; sourceTree = "<group>"; };
 		50A8C89B260CE51300676B54 /* Info.plist */ = {isa = PBXFileReference; lastKnownFileType = text.plist.xml; path = Info.plist; sourceTree = "<group>"; };
@@ -466,7 +466,7 @@
 		50623C31261387BB002E4D11 /* VM */ = {
 			isa = PBXGroup;
 			children = (
-				50623C3226138835002E4D11 /* ProdcutDetailPresenter.swift */,
+				50623C3226138835002E4D11 /* ProductDetailPresenter.swift */,
 			);
 			path = VM;
 			sourceTree = "<group>";
@@ -866,7 +866,6 @@
 				50A8C903260CF04D00676B54 /* PBXTargetDependency */,
 				50A8C91B260CF3DD00676B54 /* PBXTargetDependency */,
 				50623ABE2611C93B002E4D11 /* PBXTargetDependency */,
-				50623BE8261380F3002E4D11 /* PBXTargetDependency */,
 			);
 			name = LBC_Demo;
 			productName = LBC_Demo;
@@ -941,6 +940,7 @@
 			buildRules = (
 			);
 			dependencies = (
+				50623C7126145B13002E4D11 /* PBXTargetDependency */,
 				50987E6F260E27D500B457E5 /* PBXTargetDependency */,
 			);
 			name = ProductListScene;
@@ -1172,7 +1172,7 @@
 				50623C1326138690002E4D11 /* ProductDetailInteractor.swift in Sources */,
 				50623C272613873D002E4D11 /* ProductDetailViewController.swift in Sources */,
 				50623C06261382C0002E4D11 /* ProductDetailSceneFactory.swift in Sources */,
-				50623C3326138835002E4D11 /* ProdcutDetailPresenter.swift in Sources */,
+				50623C3326138835002E4D11 /* ProductDetailPresenter.swift in Sources */,
 				50623BFA261381BB002E4D11 /* ProductDetailRouter.swift in Sources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
@@ -1278,11 +1278,6 @@
 			target = 50A8C8FC260CF04D00676B54 /* ProductListScene */;
 			targetProxy = 50623B8526131681002E4D11 /* PBXContainerItemProxy */;
 		};
-		50623BE8261380F3002E4D11 /* PBXTargetDependency */ = {
-			isa = PBXTargetDependency;
-			target = 50623BE1261380F3002E4D11 /* ProductDetailScene */;
-			targetProxy = 50623BE7261380F3002E4D11 /* PBXContainerItemProxy */;
-		};
 		50623C592614533D002E4D11 /* PBXTargetDependency */ = {
 			isa = PBXTargetDependency;
 			target = 50A8C914260CF3DD00676B54 /* BusinessEntities */;
@@ -1292,6 +1287,11 @@
 			isa = PBXTargetDependency;
 			target = 50A8C8C2260CE68200676B54 /* GenRouting */;
 			targetProxy = 50623C5A26145344002E4D11 /* PBXContainerItemProxy */;
+		};
+		50623C7126145B13002E4D11 /* PBXTargetDependency */ = {
+			isa = PBXTargetDependency;
+			target = 50623BE1261380F3002E4D11 /* ProductDetailScene */;
+			targetProxy = 50623C7026145B13002E4D11 /* PBXContainerItemProxy */;
 		};
 		50987E6F260E27D500B457E5 /* PBXTargetDependency */ = {
 			isa = PBXTargetDependency;

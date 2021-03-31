@@ -1,15 +1,17 @@
 //
-//  ProductListPresenter.swift
-//  ProductListScene
+//  ProductDetailPresenter.swift
+//  ProductDetailScene
 //
-//  Created by maxime wacker on 25/03/2021.
+//  Created by maxime wacker on 30/03/2021.
 //
 
 import BusinessEntities
 
-typealias ProductID = UInt
+public protocol ProductDetailViewControllering: AnyObject {
+    func refresh(with viewModel: ProductDetailMainViewModel)
+}
 
-public struct ProductCellMainViewModel {
+public struct ProductDetailMainViewModel {
     let productID: UInt
     //let imageID: String?
     let title: String
@@ -24,11 +26,6 @@ public struct ProductCellMainViewModel {
         self.isUrgent = isUrgent
         self.category = category
     }
-    
-}
-
-public protocol ProductListViewControllering: AnyObject {
-    func reloadTable()
 }
 
 extension ProductCategory {
@@ -39,12 +36,19 @@ extension ProductCategory {
     }
 }
 
-final class ProductListPresenter: ProductListPresentering {
-    weak var _viewController: ProductListViewControllering?
+final class ProductDetailPresenter: ProductDetailPresentering {
+    weak var _viewController: ProductDetailViewControllering?
     
-    func updateList() {
-        _viewController?.reloadTable()
+    func updateDetail(_ productRecord:ProductRecord){
+        _viewController?.refresh(
+            with: ProductDetailMainViewModel(
+                productID: productRecord.id,
+                title: productRecord.title,
+                price: "\(productRecord.price)",
+                isUrgent: productRecord.isUrgent,
+                category: productRecord.category.displayName())
+        )
     }
+    
+    
 }
-
-
