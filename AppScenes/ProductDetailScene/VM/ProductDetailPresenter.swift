@@ -49,12 +49,18 @@ extension ProductCategory {
 }
 
 final class ProductDetailPresenter: ProductDetailPresentering {
-    static var priceformatter: NumberFormatter {
-        let formatter = NumberFormatter()
-        formatter.numberStyle = .currency
-        formatter.currencyCode = "EUR"
-        formatter.maximumFractionDigits = 2
-        return formatter
+    static var priceFormatter: NumberFormatter {
+        let priceFormatter = NumberFormatter()
+        priceFormatter.numberStyle = .currency
+        priceFormatter.currencyCode = "EUR"
+        priceFormatter.maximumFractionDigits = 2
+        return priceFormatter
+    }
+    
+    static var dateFormatter: DateFormatter {
+        let dateFormatter = DateFormatter()
+        dateFormatter.dateFormat = "dd/MM/yyyy"
+        return dateFormatter
     }
     
     weak var _viewController: ProductDetailViewControllering?
@@ -65,10 +71,11 @@ final class ProductDetailPresenter: ProductDetailPresentering {
                 productID: productRecord.id,
                 title: productRecord.title,
                 description: productRecord.description,
-                price: ProductDetailPresenter.priceformatter.string(from: productRecord.price as NSNumber) ?? "",
-                date: "",
+                price: ProductDetailPresenter.priceFormatter.string(from: productRecord.price as NSNumber) ?? "",
+                date: "publié le \(ProductDetailPresenter.dateFormatter.string(from: productRecord.creationDate))",
                 isUrgent: productRecord.isUrgent,
-                category: productRecord.category.displayName())
+                category: "Catégorie : \(productRecord.category.displayName())"
+            )
         )
     }
     

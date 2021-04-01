@@ -44,6 +44,7 @@ final class ProductDetailViewController: UIViewController {
 
     private let categoryLabel : UILabel = {
         let categoryLabel = UILabel()
+        categoryLabel.setContentHuggingPriority(UILayoutPriority(rawValue: 0), for: .horizontal)
         categoryLabel.textColor = .black
         categoryLabel.font = UIFont.systemFont(ofSize: 16)
         categoryLabel.textAlignment = .left
@@ -53,15 +54,27 @@ final class ProductDetailViewController: UIViewController {
     
     private let priceLabel : UILabel = {
         let priceLabel = UILabel()
+        priceLabel.setContentHuggingPriority(UILayoutPriority(rawValue: 0), for: .horizontal)
         priceLabel.textColor = .black
-        priceLabel.font = UIFont.boldSystemFont(ofSize: 16)
+        priceLabel.font = UIFont.boldSystemFont(ofSize: 20)
         priceLabel.textAlignment = .left
         priceLabel.numberOfLines = 0
         return priceLabel
     }()
     
+    private let dateLabel : UILabel = {
+        let dateLabel = UILabel()
+        dateLabel.setContentHuggingPriority(UILayoutPriority(rawValue: 0), for: .horizontal)
+        dateLabel.textColor = .black
+        dateLabel.font = UIFont.systemFont(ofSize: 14)
+        dateLabel.textAlignment = .left
+        dateLabel.numberOfLines = 0
+        return dateLabel
+    }()
+    
     private lazy var headerTextVStack: UIStackView = {
-        let headerTextVStack = UIStackView(arrangedSubviews: [categoryLabel, priceLabel])
+        let headerTextVStack = UIStackView(arrangedSubviews: [priceLabel, categoryLabel, dateLabel])
+        headerTextVStack.setContentHuggingPriority(UILayoutPriority(rawValue: 0), for: .horizontal)
         headerTextVStack.backgroundColor = .lightGray
         headerTextVStack.translatesAutoresizingMaskIntoConstraints = false
         headerTextVStack.axis = .vertical
@@ -151,6 +164,7 @@ extension ProductDetailViewController: ProductDetailViewControllering {
             self.titleLabel.text = viewModel.title
             self.categoryLabel.text = viewModel.category
             self.priceLabel.text = viewModel.price
+            self.dateLabel.text = viewModel.date
             self.descriptionView.text = viewModel.description
         }
     }
