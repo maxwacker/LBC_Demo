@@ -23,7 +23,7 @@ final class ProductListCell: UITableViewCell {
     
     override init(style: UITableViewCell.CellStyle, reuseIdentifier: String?) {
         super.init(style: style, reuseIdentifier: reuseIdentifier)
-        
+        contentView.layoutMargins.right = 5
         contentView.addSubview(topHStack)
         topHStack.leadingAnchor.constraint(equalTo: contentView.leadingAnchor).isActive = true
         topHStack.trailingAnchor.constraint(equalTo: contentView.trailingAnchor).isActive = true
@@ -45,9 +45,31 @@ final class ProductListCell: UITableViewCell {
         }
         
     }
-        
+    
+    private let urgentLabel : UILabel = {
+        let urgentLabel = UILabel()
+        urgentLabel.text = "URGENT"
+        //lbl.setContentHuggingPriority(UILayoutPriority(rawValue: 0), for: .horizontal)
+        urgentLabel.textColor = .red
+        urgentLabel.numberOfLines = 1
+        urgentLabel.font = UIFont.boldSystemFont(ofSize: 12)
+        urgentLabel.textAlignment = .right
+        return urgentLabel
+    }()
+    
+    private lazy var textBottomHStack: UIStackView = {
+        let textBottomHStack = UIStackView( arrangedSubviews: [priceLabel, urgentLabel])
+        textBottomHStack.translatesAutoresizingMaskIntoConstraints = false
+        textBottomHStack.axis = .horizontal
+        textBottomHStack.distribution = .fill
+        textBottomHStack.spacing = UIStackView.spacingUseSystem
+        textBottomHStack.isLayoutMarginsRelativeArrangement = true
+        textBottomHStack.directionalLayoutMargins = NSDirectionalEdgeInsets(top: 5, leading: 5, bottom: 5, trailing: 5)
+        return textBottomHStack
+    }()
+    
     private lazy var textVStack: UIStackView = {
-        let textVStack = UIStackView( arrangedSubviews: [titleLabel, priceLabel])
+        let textVStack = UIStackView( arrangedSubviews: [titleLabel, textBottomHStack])
         textVStack.layer.cornerRadius = 4
         textVStack.backgroundColor = .lightGray
         textVStack.translatesAutoresizingMaskIntoConstraints = false
@@ -68,8 +90,6 @@ final class ProductListCell: UITableViewCell {
         topHStack.spacing = UIStackView.spacingUseSystem
         topHStack.isLayoutMarginsRelativeArrangement = true
         topHStack.directionalLayoutMargins = NSDirectionalEdgeInsets(top: 5, leading: 5, bottom: 5, trailing: 5)
-        contentView.layoutMargins.right = 5
-        
         return topHStack
     } ()
 
@@ -148,6 +168,7 @@ extension ProductListCell: ProductListCelling{
             self.titleLabel.text = mainViewModel.title
             self.priceLabel.text = mainViewModel.price
             //print("cell \(mainViewModel.title) Urgent: \(mainViewModel.isUrgent) ")
+            self.urgentLabel.isHidden = !mainViewModel.isUrgent
             self.urgentMark.image = nil //disabled because bugy
 // Horrible bug to be fixed
 // When uncommenting next 2 lines, the urgent mark doesn't appear on the same cells as the one
