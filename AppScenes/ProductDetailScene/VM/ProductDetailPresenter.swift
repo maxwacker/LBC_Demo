@@ -17,6 +17,7 @@ public struct ProductDetailMainViewModel {
     let title: String
     let description: String
     let price: String
+    let date: String
     let isUrgent: Bool
     let category: String
     
@@ -25,6 +26,7 @@ public struct ProductDetailMainViewModel {
         title: String,
         description: String,
         price: String,
+        date: String,
         isUrgent: Bool,
         category: String
     ) {
@@ -32,6 +34,7 @@ public struct ProductDetailMainViewModel {
         self.title = title
         self.description = description
         self.price = price
+        self.date = date
         self.isUrgent = isUrgent
         self.category = category
     }
@@ -46,6 +49,14 @@ extension ProductCategory {
 }
 
 final class ProductDetailPresenter: ProductDetailPresentering {
+    static var priceformatter: NumberFormatter {
+        let formatter = NumberFormatter()
+        formatter.numberStyle = .currency
+        formatter.currencyCode = "EUR"
+        formatter.maximumFractionDigits = 2
+        return formatter
+    }
+    
     weak var _viewController: ProductDetailViewControllering?
     
     func updateDetailMain(_ productRecord:ProductRecord){
@@ -54,7 +65,8 @@ final class ProductDetailPresenter: ProductDetailPresentering {
                 productID: productRecord.id,
                 title: productRecord.title,
                 description: productRecord.description,
-                price: "\(productRecord.price)",
+                price: ProductDetailPresenter.priceformatter.string(from: productRecord.price as NSNumber) ?? "",
+                date: "",
                 isUrgent: productRecord.isUrgent,
                 category: productRecord.category.displayName())
         )

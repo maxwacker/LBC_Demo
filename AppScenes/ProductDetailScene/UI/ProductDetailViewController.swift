@@ -29,22 +29,51 @@ final class ProductDetailViewController: UIViewController {
         let productImageView = UIImageView()
         productImageView.contentMode = .scaleAspectFit
         productImageView.clipsToBounds = true
-        productImageView.widthAnchor.constraint(equalToConstant: 200).isActive = true
+        //productImageView.widthAnchor.constraint(equalToConstant: 200).isActive = true
         return productImageView
     }()
     
-    lazy var descriptionView: UITextView = {
+    private let descriptionView: UITextView = {
         let descriptionView = UITextView()
-        //lbl.setContentHuggingPriority(UILayoutPriority(rawValue: 0), for: .horizontal)
+        descriptionView.layer.cornerRadius = 5.0
         descriptionView.textColor = .black
-        //descriptionView.numberOfLines = 0
-        descriptionView.font = UIFont.boldSystemFont(ofSize: 16)
+        descriptionView.font = UIFont.systemFont(ofSize: 16)
         descriptionView.textAlignment = .left
         return descriptionView
     }()
 
-    lazy var headerHStack: UIStackView = {
-        let headerHStack = UIStackView(arrangedSubviews: [productImageView, titleLabel])
+    private let categoryLabel : UILabel = {
+        let categoryLabel = UILabel()
+        categoryLabel.textColor = .black
+        categoryLabel.font = UIFont.systemFont(ofSize: 16)
+        categoryLabel.textAlignment = .left
+        categoryLabel.numberOfLines = 0
+        return categoryLabel
+    }()
+    
+    private let priceLabel : UILabel = {
+        let priceLabel = UILabel()
+        priceLabel.textColor = .black
+        priceLabel.font = UIFont.boldSystemFont(ofSize: 16)
+        priceLabel.textAlignment = .left
+        priceLabel.numberOfLines = 0
+        return priceLabel
+    }()
+    
+    private lazy var headerTextVStack: UIStackView = {
+        let headerTextVStack = UIStackView(arrangedSubviews: [categoryLabel, priceLabel])
+        headerTextVStack.backgroundColor = .lightGray
+        headerTextVStack.translatesAutoresizingMaskIntoConstraints = false
+        headerTextVStack.axis = .vertical
+        headerTextVStack.distribution = .fill
+        headerTextVStack.spacing = UIStackView.spacingUseSystem
+        headerTextVStack.isLayoutMarginsRelativeArrangement = true
+        headerTextVStack.directionalLayoutMargins = NSDirectionalEdgeInsets(top: 5, leading: 5, bottom: 5, trailing: 5)
+        return headerTextVStack
+    }()
+    
+    private lazy var headerHStack: UIStackView = {
+        let headerHStack = UIStackView(arrangedSubviews: [productImageView, headerTextVStack])
         headerHStack.backgroundColor = .lightGray
         headerHStack.translatesAutoresizingMaskIntoConstraints = false
         headerHStack.axis = .horizontal
@@ -55,8 +84,8 @@ final class ProductDetailViewController: UIViewController {
         return headerHStack
     }()
     
-    lazy var topVStack: UIStackView = {
-        let topVStack = UIStackView(arrangedSubviews: [headerHStack, descriptionView])
+    private lazy var topVStack: UIStackView = {
+        let topVStack = UIStackView(arrangedSubviews: [titleLabel, headerHStack, descriptionView])
         topVStack.backgroundColor = .lightGray
         topVStack.translatesAutoresizingMaskIntoConstraints = false
         topVStack.axis = .vertical
@@ -120,6 +149,8 @@ extension ProductDetailViewController: ProductDetailViewControllering {
     func refresh(with viewModel: ProductDetailMainViewModel) {
         DispatchQueue.main.async  {
             self.titleLabel.text = viewModel.title
+            self.categoryLabel.text = viewModel.category
+            self.priceLabel.text = viewModel.price
             self.descriptionView.text = viewModel.description
         }
     }
