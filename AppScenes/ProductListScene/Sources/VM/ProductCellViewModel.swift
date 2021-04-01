@@ -34,7 +34,6 @@ final class ProductCellPresenter: ProductListCellPresentering {
         self._productDataStore = productDataStore
         self._imageDataStore = imageDataStore
         self._productID = productID
-        
     }
     
     func updateMain() {

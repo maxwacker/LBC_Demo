@@ -8,7 +8,7 @@
 import XCTest
 
 import BusinessEntities
-@testable import ProductListScene
+@testable import DataRepository
 
 // WARNING :
 // These are integrations tests, not unit tests (not isolated)
@@ -21,13 +21,13 @@ class ProductListNetWorkerIntegrationTests: XCTestCase {
 
     func test_GIVEN_ProductListNetWorker_WHEN_invoked_THEN_returnsDecodedProdcutRecord() throws {
         let expectation = XCTestExpectation(description: "Request to master/listing.json")
-        let testedProductListNetWorker = ProductListNetWorker(
+        let testedProductListNetWorker = AllProductNetWorker(
             serviceURL: URL(string: "https://raw.githubusercontent.com/leboncoin/paperclip/master/listing.json"))
         testedProductListNetWorker.load() {
             ( result: Result<[ProductRecord], Error>) in
             switch result {
             case .success( let products):
-                XCTAssertNotNil(products.first as? ProductRecord)
+                XCTAssertNotNil(products.first)
                 expectation.fulfill()
               break
             case .failure(let error):
