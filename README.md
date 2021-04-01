@@ -37,4 +37,5 @@ Each Scene (ie: each use case screen) of the application is designed as collabor
 * **Router**
 	Sometimes user interaction leads to changes the whole display scene (master->detail transition for ex). When such user request arrives from View to Interactor, the need to change the current Scene is detected by the Interactor but the responsibility of it is on the Router. Decoupling the user action from the navigation effect results in an application more flexible to navigation design changes and greatly simplify deeplinking.
 
-  
+  ![VIPER](Documentation/VIPER_Components.png)
+
