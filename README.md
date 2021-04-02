@@ -36,6 +36,23 @@ Each Scene (ie: each use case screen) of the application is designed as collabor
 
 * **Router**
 	Sometimes user interaction leads to changes the whole display scene (master->detail transition for ex). When such user request arrives from View to Interactor, the need to change the current Scene is detected by the Interactor but the responsibility of it is on the Router. Decoupling the user action from the navigation effect results in an application more flexible to navigation design changes and greatly simplify deeplinking.
+	
+
+Depedency Inversion Principle
 
   ![VIPER](Documentation/VIPER_Components.png)
+
+## Files Folders Structure
+
+So, as shown in the previous diagram, every application scene is implemented as a VIPER chain of components. 
+During the development of a new Scene, it's comfortable to organize the scene files in a dedicated target, so it builds very quickly (without needing to build the whole app).
+And since every components interfaces are defined by (protocol) abstractions, faking dependencies is also easy. 
+These 2 benefits allow to have a Test Driven Development (TDD) approach.  
+
+When a Scene is developed this way and finished (generally well tested, thanks to TDD), it could be isolated in its own Swift Package, and by this way make the Scene available as dynamic linkable binary.
+
+So the 2-letters folder naming convention is a good preparation of such SPM packaging. When exported into an SPM package, each folders becomes a target inside the package. Please remark that in the diagram there is cycle in the arrow networks, neither in the reference directed graph (blue arrows), not in the import direct graph (black arrows). No reference cycle means no memory leak (no retain cycle). No import cycle means the Scene component could be divided in even more sub-components : 1 component for each 2-letters folders.
+
+
+
 
