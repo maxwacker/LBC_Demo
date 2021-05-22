@@ -7,6 +7,7 @@
 	objects = {
 
 /* Begin PBXBuildFile section */
+		04E06B982659733B006398A2 /* ProductDetailMainViewModel.swift in Sources */ = {isa = PBXBuildFile; fileRef = 04E06B972659733B006398A2 /* ProductDetailMainViewModel.swift */; };
 		50623A0F260F10D0002E4D11 /* ProductListViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 50623A0E260F10D0002E4D11 /* ProductListViewController.swift */; };
 		50623A26260F187F002E4D11 /* ProductListNetWorkerIntegrationTests.swift in Sources */ = {isa = PBXBuildFile; fileRef = 50623A25260F187F002E4D11 /* ProductListNetWorkerIntegrationTests.swift */; };
 		50623A4C260F3476002E4D11 /* ProductListInteractorTests.swift in Sources */ = {isa = PBXBuildFile; fileRef = 50623A43260F2D11002E4D11 /* ProductListInteractorTests.swift */; };
@@ -217,6 +218,7 @@
 /* End PBXCopyFilesBuildPhase section */
 
 /* Begin PBXFileReference section */
+		04E06B972659733B006398A2 /* ProductDetailMainViewModel.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ProductDetailMainViewModel.swift; sourceTree = "<group>"; };
 		50623A04260F0CD7002E4D11 /* AllProductListNetWorker.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = AllProductListNetWorker.swift; sourceTree = "<group>"; };
 		50623A0E260F10D0002E4D11 /* ProductListViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ProductListViewController.swift; sourceTree = "<group>"; };
 		50623A25260F187F002E4D11 /* ProductListNetWorkerIntegrationTests.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ProductListNetWorkerIntegrationTests.swift; sourceTree = "<group>"; };
@@ -371,6 +373,22 @@
 /* End PBXFrameworksBuildPhase section */
 
 /* Begin PBXGroup section */
+		04E06B8326597220006398A2 /* PR */ = {
+			isa = PBXGroup;
+			children = (
+				50A8C935260D027200676B54 /* ProductListPresenter.swift */,
+			);
+			path = PR;
+			sourceTree = "<group>";
+		};
+		04E06B8D26597294006398A2 /* PR */ = {
+			isa = PBXGroup;
+			children = (
+				50623C3226138835002E4D11 /* ProductDetailPresenter.swift */,
+			);
+			path = PR;
+			sourceTree = "<group>";
+		};
 		50623A84260F83D8002E4D11 /* ProductListScene */ = {
 			isa = PBXGroup;
 			children = (
@@ -426,6 +444,7 @@
 				50623C112613865A002E4D11 /* UC */,
 				50623BF726138190002E4D11 /* RT */,
 				50623C1026138641002E4D11 /* UI */,
+				04E06B8D26597294006398A2 /* PR */,
 				50623C31261387BB002E4D11 /* VM */,
 			);
 			path = ProductDetailScene;
@@ -466,7 +485,7 @@
 		50623C31261387BB002E4D11 /* VM */ = {
 			isa = PBXGroup;
 			children = (
-				50623C3226138835002E4D11 /* ProductDetailPresenter.swift */,
+				04E06B972659733B006398A2 /* ProductDetailMainViewModel.swift */,
 			);
 			path = VM;
 			sourceTree = "<group>";
@@ -643,8 +662,8 @@
 				50A8C90A260CF15D00676B54 /* RT */,
 				50A8C90B260CF16B00676B54 /* UI */,
 				50A8C90C260CF17500676B54 /* UC */,
+				04E06B8326597220006398A2 /* PR */,
 				50A8C90D260CF17C00676B54 /* VM */,
-				50A8C90E260CF1A900676B54 /* WK */,
 			);
 			path = Sources;
 			sourceTree = "<group>";
@@ -679,17 +698,9 @@
 		50A8C90D260CF17C00676B54 /* VM */ = {
 			isa = PBXGroup;
 			children = (
-				50A8C935260D027200676B54 /* ProductListPresenter.swift */,
 				50623AFB26121787002E4D11 /* ProductCellViewModel.swift */,
 			);
 			path = VM;
-			sourceTree = "<group>";
-		};
-		50A8C90E260CF1A900676B54 /* WK */ = {
-			isa = PBXGroup;
-			children = (
-			);
-			path = WK;
 			sourceTree = "<group>";
 		};
 		50A8C90F260CF21600676B54 /* Commons */ = {
@@ -1171,6 +1182,7 @@
 			files = (
 				50623C1326138690002E4D11 /* ProductDetailInteractor.swift in Sources */,
 				50623C272613873D002E4D11 /* ProductDetailViewController.swift in Sources */,
+				04E06B982659733B006398A2 /* ProductDetailMainViewModel.swift in Sources */,
 				50623C06261382C0002E4D11 /* ProductDetailSceneFactory.swift in Sources */,
 				50623C3326138835002E4D11 /* ProductDetailPresenter.swift in Sources */,
 				50623BFA261381BB002E4D11 /* ProductDetailRouter.swift in Sources */,

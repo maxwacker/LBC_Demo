@@ -11,7 +11,6 @@ typealias ProductID = UInt
 
 public struct ProductCellMainViewModel {
     let productID: UInt
-    //let imageID: String?
     let title: String
     let price: String
     let isUrgent: Bool

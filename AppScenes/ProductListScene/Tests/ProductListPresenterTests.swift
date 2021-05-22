@@ -64,14 +64,14 @@ class ProductListCellPresenterTests: XCTestCase {
         (fakeProductListDataStore as! FakeProductListDataStore).loadedProducts = [productRecord]
         let fakeProductListCell = FakeProductListCell()
 
-        let testedProductListCellPresenter = ProductCellPresenter(
+        let sutProductListCellPresenter = ProductCellPresenter(
             cell: fakeProductListCell,
             productDataStore: fakeProductListDataStore!,
             imageDataStore: fakeImageListDataStore!,
             productID: 123
         )
         //WHEN
-        testedProductListCellPresenter.updateMain()
+        sutProductListCellPresenter.updateMain()
         //THEN
         let expectedItemViewModel = ProductCellMainViewModel(
             productID: 123,
